@@ -1,0 +1,875 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico?v=5.1.1" />
+
+
+
+
+
+
+<meta name="description" content="Image classify using own images with tensorflowIntroduction:  If you are the new user in tensorflow (just like me two weeks ago), you can see what is the fantasty feature in here   I have already test">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Image-classify-using-own-images-with-tensorflow-">
+<meta property="og:url" content="http://yoursite.com/2017/07/23/Image-classify-using-own-images-with-tensorflow/index.html">
+<meta property="og:site_name" content="棒呵呵">
+<meta property="og:description" content="Image classify using own images with tensorflowIntroduction:  If you are the new user in tensorflow (just like me two weeks ago), you can see what is the fantasty feature in here   I have already test">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://yoursite.com/images/blog_image/lion_classify.png">
+<meta property="og:image" content="http://yoursite.com/images/blog_image/handwriting_recognize.png">
+<meta property="og:image" content="http://yoursite.com/images/blog_image/The_last_result.png">
+<meta property="og:updated_time" content="2017-07-23T09:48:03.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Image-classify-using-own-images-with-tensorflow-">
+<meta name="twitter:description" content="Image classify using own images with tensorflowIntroduction:  If you are the new user in tensorflow (just like me two weeks ago), you can see what is the fantasty feature in here   I have already test">
+<meta name="twitter:image" content="http://yoursite.com/images/blog_image/lion_classify.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: 'D0PQZFOH3R',
+      apiKey: 'd4a29f42be63dbcaed33511f9b9f02cb',
+      indexName: 'indexName',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/07/23/Image-classify-using-own-images-with-tensorflow/"/>
+
+
+
+
+
+  <title>Image-classify-using-own-images-with-tensorflow- | 棒呵呵</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+    
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">棒呵呵</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">流氓不害怕，就怕流氓有文化…向有文化的流氓奋斗中…</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/07/23/Image-classify-using-own-images-with-tensorflow/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="haobangpig">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/WechatIMG1.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="棒呵呵">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Image-classify-using-own-images-with-tensorflow-</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-07-23T18:33:26+09:00">
+                2017-07-23
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2017/07/23/Image-classify-using-own-images-with-tensorflow/" class="leancloud_visitors" data-flag-title="Image-classify-using-own-images-with-tensorflow-">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="Image-classify-using-own-images-with-tensorflow"><a href="#Image-classify-using-own-images-with-tensorflow" class="headerlink" title="Image classify using own images with tensorflow"></a>Image classify using own images with tensorflow</h1><h4 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction:"></a>Introduction:</h4><p>  If you are the new user in tensorflow (just like me two weeks ago), you can see what is the fantasty feature in <a href="https://www.tensorflow.org/versions/r0.10/tutorials/image_recognition/index.html" target="_blank" rel="external">here</a></p>
+<p>  I have already test it:<br>  <img src="/images/blog_image/lion_classify.png" alt=""></p>
+<a id="more"></a>
+<p>  It is quit easy, just installed the tensorflow and see the <a href="https://www.tensorflow.org/versions/r0.10/tutorials/image_recognition/index.html" target="_blank" rel="external">website</a> . Running at your terminal.<br>  But how to input your own images and  and output the possibility after training it.</p>
+<p>  So in this project, it will make a really simple demonstrate about it.</p>
+<h3 id="Main-Idea"><a href="#Main-Idea" class="headerlink" title="Main Idea:"></a>Main Idea:</h3><p>  This is about using your own images(JPEG or PNG) and created labels with tensorflow.</p>
+<h3 id="Steps-for-studying"><a href="#Steps-for-studying" class="headerlink" title="Steps for studying:"></a>Steps for studying:</h3><table>
+<thead>
+<tr>
+<th>Step</th>
+<th>To do</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>Understand the key concepts</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Understand the basic tutorial in Tensorflow(MNIST)</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Modify the basic tutorial (MNIST) to output the prediction and each of the labels possibility</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Reformat the images(JPEG or PNG) to the specification format</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Using step three’s function to output the result</td>
+</tr>
+</tbody>
+</table>
+<h4 id="Step-One"><a href="#Step-One" class="headerlink" title="Step One:"></a>Step One:</h4><h5 id="Using-google-or-baidu-or-anything-you-can-try-to-search-everything-about-the-four-key-words-that-we-will-use-in-this-project"><a href="#Using-google-or-baidu-or-anything-you-can-try-to-search-everything-about-the-four-key-words-that-we-will-use-in-this-project" class="headerlink" title="Using google or baidu or anything you can, try to search everything about the four key words that we will use in this project."></a><em>Using google or baidu or anything you can, try to search everything about the four key words that we will use in this project.</em></h5><p>  Key Concept:</p>
+<ul>
+<li>Deep Learning &amp; Neural Network</li>
+<li>Softmax Regression </li>
+<li>Gradient descent</li>
+<li>CNN(Convolutional Neural Network)</li>
+</ul>
+<h4 id="Review"><a href="#Review" class="headerlink" title="Review:"></a>Review:</h4><h5 id="Pleae-use-your-own-language-to-illustrate"><a href="#Pleae-use-your-own-language-to-illustrate" class="headerlink" title="Pleae use your own language to illustrate:"></a><em>Pleae use your own language to illustrate:</em></h5><p>  (If you can make the others who never hear these concepts to understand with a simple example, that mean you had already understand these.)</p>
+<ul>
+<li>What is the Deep learning &amp; Neural Network</li>
+<li>How to create the Softmax Regression Model </li>
+<li>What does the Gradient descent usage doing</li>
+<li>Please make a simple demonstration to explain what is the CNN and what is the biggest feature of it. </li>
+</ul>
+<h4 id="Step-Two"><a href="#Step-Two" class="headerlink" title="Step Two:"></a>Step Two:</h4><h5 id="Go-to-The-tensorflow-tutorial-website-and-download-the-original-the-code-and-try-to-understand-each-of-line"><a href="#Go-to-The-tensorflow-tutorial-website-and-download-the-original-the-code-and-try-to-understand-each-of-line" class="headerlink" title="Go to The tensorflow tutorial website and download the original the code and try to understand each of line."></a><em><a href="https://www.tensorflow.org/versions/r0.10/tutorials/mnist/beginners/index.html" target="_blank" rel="external">Go to The tensorflow tutorial website and download the original the code and try to understand each of line</a>.</em></h5><p>  You may follow some steps in here to understand more about the tensorflow</p>
+<ul>
+<li><a href="https://www.tensorflow.org/versions/r0.10/get_started/index.html" target="_blank" rel="external">HelloWorld in tensorflow</a> </li>
+<li><a href="http://learningtensorflow.com/lesson4/" target="_blank" rel="external">Placeholder</a>  </li>
+<li>[Feed] (<a href="https://www.tensorflow.org/versions/r0.10/how_tos/reading_data/index.html#feeding" target="_blank" rel="external">https://www.tensorflow.org/versions/r0.10/how_tos/reading_data/index.html#feeding</a>)</li>
+<li>[Creation, Initialization, Saving, and Loading] (<a href="https://www.tensorflow.org/versions/r0.10/how_tos/variables/index.html" target="_blank" rel="external">https://www.tensorflow.org/versions/r0.10/how_tos/variables/index.html</a>)</li>
+<li><a href="https://www.tensorflow.org/versions/r0.10/api_docs/python/math_ops.html#argmax" target="_blank" rel="external">Tf.argmax</a></li>
+<li><a href="https://github.com/tensorflow/tensorflow/issues/97" target="_blank" rel="external">Output the result and possibilty</a></li>
+</ul>
+<h4 id="Step-Three-Understand-this-example-and-edit-the-output-as-you-wish"><a href="#Step-Three-Understand-this-example-and-edit-the-output-as-you-wish" class="headerlink" title="Step Three: Understand this example and edit the output as you wish"></a>Step Three: Understand this example and edit the output as you wish</h4><h5 id="In-this-step-it-is-really-important-in-this-project-and-it-will-help-you-to-understand-what-is-the-structure-in-the-tensorflow"><a href="#In-this-step-it-is-really-important-in-this-project-and-it-will-help-you-to-understand-what-is-the-structure-in-the-tensorflow" class="headerlink" title="In this step, it is really important in this project and it will help you to understand what is the structure in the tensorflow."></a><em>In this step, it is really important in this project and it will help you to understand what is the structure in the tensorflow.</em></h5><h5 id="At-the-beginning-I-wanna-use-its-own-test-data-and-output-the-possibility-after-I-insert-a-test-image-But-I-was-totally-no-idea-how-to-do-it-But-luckly-I-found-this-blog-Using-TensorFlow-to-create-your-own-handwriting-recognition-engine-Thanks-the-writer-Niek-Temme-who-help-me-solved-this-problem-I-just-directly-upload-his-code-on-this-project-Above-that-I-add-some-functions-in-his-source-code-to-content-with-my-demand"><a href="#At-the-beginning-I-wanna-use-its-own-test-data-and-output-the-possibility-after-I-insert-a-test-image-But-I-was-totally-no-idea-how-to-do-it-But-luckly-I-found-this-blog-Using-TensorFlow-to-create-your-own-handwriting-recognition-engine-Thanks-the-writer-Niek-Temme-who-help-me-solved-this-problem-I-just-directly-upload-his-code-on-this-project-Above-that-I-add-some-functions-in-his-source-code-to-content-with-my-demand" class="headerlink" title="At the beginning, I wanna use its own test data and output the possibility after I insert a test image. But I was totally no idea how to do it. But luckly, I found this blog: Using TensorFlow to create your own handwriting recognition engine. Thanks the writer(Niek Temme) who help me solved this problem. I just directly upload his code on this project. Above that, I add some functions in his source code to content with my demand."></a>At the beginning, I wanna use its own test data and output the possibility after I insert a test image. But I was totally no idea how to do it. But luckly, I found this blog: <a href="https://niektemme.com/2016/02/21/tensorflow-handwriting/" target="_blank" rel="external">Using TensorFlow to create your own handwriting recognition engine</a>. Thanks the writer(Niek Temme) who help me solved this problem. I just directly upload his code on this project. Above that, I add some functions in his source code to content with my demand.</h5><p>The logical in the source core is quite sample, I will illustrate with the pseudocode and you may check the source code in<br><a href="https://github.com/haobangpig/Image-classify-using-own-images-with-tensorflow-/tree/master/tensorflow-mnist-predict" target="_blank" rel="external">this file</a>.</p>
+<h5 id="Create-model"><a href="#Create-model" class="headerlink" title="Create_model"></a>Create_model</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">1&gt;import the dataset </div><div class="line">2&gt;create the softmax regression model (placeholder)</div><div class="line">3&gt;Set the GradientDescent function</div><div class="line">4&gt;session initialize </div><div class="line">5&gt;traing</div><div class="line">6&gt;save as .ckpt file formate (Saver())</div><div class="line">7&gt;output the training_test posibility</div></pre></td></tr></table></figure>
+<h5 id="Prediction"><a href="#Prediction" class="headerlink" title="Prediction"></a>Prediction</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">1&gt;import the test image from your computer</div><div class="line">2&gt;use imageprepare() to reformat the input image</div><div class="line">3&gt;use predictint() to give the result and the possibility.</div></pre></td></tr></table></figure>
+<p>Prediction.predictini() :<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">1&gt;Define the softmax regression model</div><div class="line">2&gt;session initial</div><div class="line">3&gt;load the  .ckpt file </div><div class="line">4&gt;use _evel function to get the prediction</div><div class="line">5&gt;use sess.run function to get each label&apos;s possibility</div></pre></td></tr></table></figure></p>
+<p>And the result will be like this :<br>  <img src="/images/blog_image/handwriting_recognize.png" alt=""></p>
+<h4 id="Step-Four"><a href="#Step-Four" class="headerlink" title="Step Four:"></a>Step Four:</h4><h5 id="In-this-step-you-need-to-know-the-CNN-and-how-it-works"><a href="#In-this-step-you-need-to-know-the-CNN-and-how-it-works" class="headerlink" title="In this step, you need to know the CNN and how it works."></a><em>In this step, you need to know the CNN and how it works.</em></h5><p>Check this <a href="https://www.udacity.com/course/deep-learning--ud730" target="_blank" rel="external">course</a>to understand more about the CNN.<br>And check the assignment(‘Assignment one’ and ‘Assignment four’) in this course.<br>‘The assignment one’ are the great example to illustrate how to convert the images to the dataset and store into the .pickle file.<br>‘The assignment four’ give the example that how to set the dataset to the images shape. See the source code and you may understand.<br>‘The assignment one’ use these labels ={‘A’,’B’,’C’,’D’,’E’,’F’,’G’,’H’,’I’,’J’}. In each of the label, there are bunchs of jpg or png format on it. So you can change the label name to your label and put a plenty of the images on it.</p>
+<h4 id="Step-Five"><a href="#Step-Five" class="headerlink" title="Step Five:"></a>Step Five:</h4><h5 id="In-this-step-We-just-need-to-use-the-step-three-souce-code-and-add-them-in-‘The-assignment-Four’-And-we-will-got-what-we-want"><a href="#In-this-step-We-just-need-to-use-the-step-three-souce-code-and-add-them-in-‘The-assignment-Four’-And-we-will-got-what-we-want" class="headerlink" title="In this step, We just need to use the step three souce code and add them in ‘The assignment Four’. And we will got what we want.*"></a>In this step, We just need to use the step three souce code and add them in ‘The assignment Four’. And we will got what we want.*</h5><p>See the source code and you may understand it.</p>
+<p>NOTICE:<br>-If you input a image that you wanna test, it may have some problems. If that happened, please use the imageprepare() function in step three to reformat the input image. </p>
+<ul>
+<li><p>‘AS4.py’  will be trained the model each time when you running it and then test the input file(filename). So if you wanna test the simple directly, try to use the Saver() function to save as ‘.ckpt’ and retore it when you test the image(Like step three did). </p>
+<p><img src="/images/blog_image/The_last_result.png" alt=""></p>
+</li>
+</ul>
+<p>Good luck for everything.</p>
+<p>If you wanna contact me, try this way : haobangpig@gmail.com</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/07/23/testing/" rel="next" title="testing">
+                <i class="fa fa-chevron-left"></i> testing
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/WechatIMG1.jpeg"
+               alt="haobangpig" />
+          <p class="site-author-name" itemprop="name">haobangpig</p>
+           
+              <p class="site-description motion-element" itemprop="description">言いたいことはなんとなくわかる...でも...</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Image-classify-using-own-images-with-tensorflow"><span class="nav-number">1.</span> <span class="nav-text">Image classify using own images with tensorflow</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Introduction"><span class="nav-number">1.0.0.1.</span> <span class="nav-text">Introduction:</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Main-Idea"><span class="nav-number">1.0.1.</span> <span class="nav-text">Main Idea:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Steps-for-studying"><span class="nav-number">1.0.2.</span> <span class="nav-text">Steps for studying:</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Step-One"><span class="nav-number">1.0.2.1.</span> <span class="nav-text">Step One:</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Using-google-or-baidu-or-anything-you-can-try-to-search-everything-about-the-four-key-words-that-we-will-use-in-this-project"><span class="nav-number">1.0.2.1.1.</span> <span class="nav-text">Using google or baidu or anything you can, try to search everything about the four key words that we will use in this project.</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Review"><span class="nav-number">1.0.2.2.</span> <span class="nav-text">Review:</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Pleae-use-your-own-language-to-illustrate"><span class="nav-number">1.0.2.2.1.</span> <span class="nav-text">Pleae use your own language to illustrate:</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Step-Two"><span class="nav-number">1.0.2.3.</span> <span class="nav-text">Step Two:</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Go-to-The-tensorflow-tutorial-website-and-download-the-original-the-code-and-try-to-understand-each-of-line"><span class="nav-number">1.0.2.3.1.</span> <span class="nav-text">Go to The tensorflow tutorial website and download the original the code and try to understand each of line.</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Step-Three-Understand-this-example-and-edit-the-output-as-you-wish"><span class="nav-number">1.0.2.4.</span> <span class="nav-text">Step Three: Understand this example and edit the output as you wish</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#In-this-step-it-is-really-important-in-this-project-and-it-will-help-you-to-understand-what-is-the-structure-in-the-tensorflow"><span class="nav-number">1.0.2.4.1.</span> <span class="nav-text">In this step, it is really important in this project and it will help you to understand what is the structure in the tensorflow.</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#At-the-beginning-I-wanna-use-its-own-test-data-and-output-the-possibility-after-I-insert-a-test-image-But-I-was-totally-no-idea-how-to-do-it-But-luckly-I-found-this-blog-Using-TensorFlow-to-create-your-own-handwriting-recognition-engine-Thanks-the-writer-Niek-Temme-who-help-me-solved-this-problem-I-just-directly-upload-his-code-on-this-project-Above-that-I-add-some-functions-in-his-source-code-to-content-with-my-demand"><span class="nav-number">1.0.2.4.2.</span> <span class="nav-text">At the beginning, I wanna use its own test data and output the possibility after I insert a test image. But I was totally no idea how to do it. But luckly, I found this blog: Using TensorFlow to create your own handwriting recognition engine. Thanks the writer(Niek Temme) who help me solved this problem. I just directly upload his code on this project. Above that, I add some functions in his source code to content with my demand.</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Create-model"><span class="nav-number">1.0.2.4.3.</span> <span class="nav-text">Create_model</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Prediction"><span class="nav-number">1.0.2.4.4.</span> <span class="nav-text">Prediction</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Step-Four"><span class="nav-number">1.0.2.5.</span> <span class="nav-text">Step Four:</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#In-this-step-you-need-to-know-the-CNN-and-how-it-works"><span class="nav-number">1.0.2.5.1.</span> <span class="nav-text">In this step, you need to know the CNN and how it works.</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Step-Five"><span class="nav-number">1.0.2.6.</span> <span class="nav-text">Step Five:</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#In-this-step-We-just-need-to-use-the-step-three-souce-code-and-add-them-in-‘The-assignment-Four’-And-we-will-got-what-we-want"><span class="nav-number">1.0.2.6.1.</span> <span class="nav-text">In this step, We just need to use the step three souce code and add them in ‘The assignment Four’. And we will got what we want.*</span></a></li></ol></li></ol></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">haobangpig</span>
+</div>
+
+
+<!-- <div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+-->
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+  
+  <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("jTT0rooqcnqetHqi9Dr6zVtv-gzGzoHsz", "ne2fVMKrEy3zjxYkqnPSolnB");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
