@@ -101,7 +101,7 @@
 <meta property="og:site_name" content="棒呵呵">
 <meta property="og:description" content="对于tensorlfow 的认识和学习顺序本文是想描述以下两个问题： - 1. tensorflow是什么，为什么要使用tensorflow自己的理解：tensorflow就是一个容器，这个容器里面呢，有一个图（data flow graph，其实就是我们的神经网络模型：model），并且这个图（模型）中包含了很多的tensor（张量，目前我的理解，其实就是矩阵，也就是数据存放的方式，）。tens">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-07-25T06:07:15.000Z">
+<meta property="og:updated_time" content="2017-07-25T08:33:40.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="tensorflow的学习心得（一）">
 <meta name="twitter:description" content="对于tensorlfow 的认识和学习顺序本文是想描述以下两个问题： - 1. tensorflow是什么，为什么要使用tensorflow自己的理解：tensorflow就是一个容器，这个容器里面呢，有一个图（data flow graph，其实就是我们的神经网络模型：model），并且这个图（模型）中包含了很多的tensor（张量，目前我的理解，其实就是矩阵，也就是数据存放的方式，）。tens">
@@ -361,6 +361,14 @@
 <li>启动这个图，也就是Session（Session，你可以理解成，你访问一次网页，在网页中打开了一个新的窗口。在这个窗口中进行网页的文章的读取，对关键词查询等过程。当你把这个窗口关掉之后，那么这个Session也就结束了。）</li>
 <li>往session里面填入值，让 session运算得到结果。</li>
 </ol>
+<hr>
+<p>其实后来仔细看看官网上的解释，也就两步：</p>
+<ol>
+<li>Building the computational graph</li>
+<li>Running the computational graph</li>
+</ol>
+<p>即使创建一个模型，跑这个模型，就没有了，<br>但是呢，如果直接打印这个模型时不实际的，因为打印出来的值是这个tensor的值，而不是tensor里面所赋予的value的值（这个地方，我把它理解为一个tensor是一个多维的矩阵，那么你直接打印这个矩阵的话呢，得到的是这个矩阵的地址或者位置，为了得到这个矩阵里面的值，必须使用session函数），所以，为了得到tensor里面我们的内容，加入了session的步骤。</p>
+<hr>
 <p>来个入门的函数理解：</p>
 <p>函数原文：<br><a href="http://blog.csdn.net/lenbow/article/details/52152766" target="_blank" rel="external">http://blog.csdn.net/lenbow/article/details/52152766</a></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> tensorflow <span class="keyword">as</span> tf</div><div class="line"> <span class="comment">#定义‘符号’变量，也称为占位符</span></div><div class="line"> a = tf.placeholder(<span class="string">"float"</span>)</div><div class="line"> b = tf.placeholder(<span class="string">"float"</span>)</div><div class="line"></div><div class="line"> y = tf.mul(a, b) <span class="comment">#构造一个op节点 第一步</span></div><div class="line"></div><div class="line"> sess = tf.Session()<span class="comment">#建立会话 第二步</span></div><div class="line"> <span class="comment">#运行会话，输入数据，并计算节点，同时打印结果</span></div><div class="line"> <span class="keyword">print</span> sess.run(y, feed_dict=&#123;a: <span class="number">3</span>, b: <span class="number">3</span>&#125;) <span class="comment">#第三步</span></div><div class="line"> <span class="comment"># 任务完成, 关闭会话.</span></div><div class="line"> sess.close()</div></pre></td></tr></table></figure>
@@ -372,8 +380,26 @@
 <li>Session</li>
 </ul>
 <p>下面逐一开始介绍：</p>
-<h4 id="1-tensor："><a href="#1-tensor：" class="headerlink" title="1. tensor："></a>1. tensor：</h4><p>tensor</p>
-<h4 id="2-Varibale"><a href="#2-Varibale" class="headerlink" title="2. Varibale"></a>2. Varibale</h4><h4 id="3-placeholder"><a href="#3-placeholder" class="headerlink" title="3. placeholder"></a>3. placeholder</h4><h4 id="4-Session"><a href="#4-Session" class="headerlink" title="4. Session"></a>4. Session</h4><h2 id="2-对于现在的目标来说，如何更好，更快的使用tensorflow去搭建自己的神经网络"><a href="#2-对于现在的目标来说，如何更好，更快的使用tensorflow去搭建自己的神经网络" class="headerlink" title="- 2. 对于现在的目标来说，如何更好，更快的使用tensorflow去搭建自己的神经网络"></a>- <strong>2. 对于现在的目标来说，如何更好，更快的使用tensorflow去搭建自己的神经网络</strong></h2>
+<h4 id="1-tensor："><a href="#1-tensor：" class="headerlink" title="1. tensor："></a>1. tensor：</h4><p><strong>在计算图（Graph）中，操作间传递的数据都是tensor</strong></p>
+<p>tensor即使我们尴尬所提到的张量（矩阵，或者是tensorflow中储存数据的方式），那么声明tensor的方式有很多种。</p>
+<p>里面有Ranks，Shape，Type需要理解一下</p>
+<p>Ranks：is the number of dimensions of the tensor</p>
+<p>Shape：这是指的是纬度，几纬的就是指几个shape</p>
+<p>types: 这里指类型，int，float，还是double等等</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> tensorflow <span class="keyword">as</span> tf</div><div class="line">a = tf.zeros(shape=[<span class="number">1</span>,<span class="number">2</span>])</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">import tensorflow as tf</div><div class="line">matrix1 = tf.constant([[3., 3.]])</div></pre></td></tr></table></figure>
+<p>等等等，都是声明tensor的函数，方法</p>
+<h4 id="2-Variable"><a href="#2-Variable" class="headerlink" title="2. Variable"></a>2. Variable</h4><p>variable即为变量的意思，当训练模型的时候，使用变量去存储和更新参数。</p>
+<p>那么变量是可以被存储（<strong>Saver函数</strong>）到磁盘中，并且在读取它们（<strong>load函数</strong>）。</p>
+<p>这里必须强调一下：创建一个变量时，必须先初始化后</p>
+<h5 id="创建Variable："><a href="#创建Variable：" class="headerlink" title="创建Variable："></a><strong>创建Variable：</strong></h5><p>例子：创建2个Variable</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> tensorflow <span class="keyword">as</span> tf</div><div class="line">weights = tf.Variable(tf.random_normal([<span class="number">784</span>, <span class="number">200</span>], stddev=<span class="number">0.35</span>), name = <span class="string">"weights"</span>)</div><div class="line"></div><div class="line">biases = tf.Variable(tf.zeros([<span class="number">200</span>]), name=<span class="string">"biases"</span>)</div></pre></td></tr></table></figure>
+<h5 id="初始化"><a href="#初始化" class="headerlink" title="初始化"></a><strong>初始化</strong></h5><p>在使用变量的时候必须初始化这个变量，而且是必须在模型的其他操作运行之前完成。<br><br>最简单的例子是添加一个给所有变量初始化的操作。</p>
+<p>例子：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> tensorflow <span class="keyword">as</span> tf</div><div class="line">weights = tf.Variable(tf.random_normal([<span class="number">784</span>, <span class="number">200</span>], stddev=<span class="number">0.35</span>), name = <span class="string">"weights"</span>)</div><div class="line"></div><div class="line">biases = tf.Variable(tf.zeros([<span class="number">200</span>]), name=<span class="string">"biases"</span>)</div></pre></td></tr></table></figure>
+<p>我说明一下，我觉得我这块说明的不是很好，有兴趣的可以去看看，或者一起交流交流：<br><a href="https://www.tensorflow.org/programmers_guide/variables" target="_blank" rel="external">https://www.tensorflow.org/programmers_guide/variables</a></p>
+<h4 id="3-placeholder"><a href="#3-placeholder" class="headerlink" title="3. placeholder"></a>3. placeholder</h4><h4 id="4-Session"><a href="#4-Session" class="headerlink" title="4. Session"></a>4. Session</h4><p>##<strong>2. 对于现在的目标来说，如何更好，更快的使用tensorflow去搭建自己的神经网络</strong></p>
+
       
     </div>
 
@@ -605,7 +631,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#对于tensorlfow-的认识和学习顺序"><span class="nav-number">1.</span> <span class="nav-text">对于tensorlfow 的认识和学习顺序</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-tensorflow是什么，为什么要使用tensorflow"><span class="nav-number">2.</span> <span class="nav-text">- 1. tensorflow是什么，为什么要使用tensorflow</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#自己的理解："><span class="nav-number">2.1.</span> <span class="nav-text">自己的理解：</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#所以，核心就是图（flow-Graph，那神经网络结构在tensorflow里也就是一张图）"><span class="nav-number">2.1.1.</span> <span class="nav-text">所以，核心就是图（flow Graph，那神经网络结构在tensorflow里也就是一张图）</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#那么使用tensorflow核心主要的流程其实就是三步："><span class="nav-number">2.2.</span> <span class="nav-text">那么使用tensorflow核心主要的流程其实就是三步：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#必须理解和掌握的几个tensorflow概念："><span class="nav-number">2.3.</span> <span class="nav-text">必须理解和掌握的几个tensorflow概念：</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-tensor："><span class="nav-number">2.3.1.</span> <span class="nav-text">1. tensor：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-Varibale"><span class="nav-number">2.3.2.</span> <span class="nav-text">2. Varibale</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-placeholder"><span class="nav-number">2.3.3.</span> <span class="nav-text">3. placeholder</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-Session"><span class="nav-number">2.3.4.</span> <span class="nav-text">4. Session</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-对于现在的目标来说，如何更好，更快的使用tensorflow去搭建自己的神经网络"><span class="nav-number">3.</span> <span class="nav-text">- 2. 对于现在的目标来说，如何更好，更快的使用tensorflow去搭建自己的神经网络</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#对于tensorlfow-的认识和学习顺序"><span class="nav-number">1.</span> <span class="nav-text">对于tensorlfow 的认识和学习顺序</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-tensorflow是什么，为什么要使用tensorflow"><span class="nav-number">2.</span> <span class="nav-text">- 1. tensorflow是什么，为什么要使用tensorflow</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#自己的理解："><span class="nav-number">2.1.</span> <span class="nav-text">自己的理解：</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#所以，核心就是图（flow-Graph，那神经网络结构在tensorflow里也就是一张图）"><span class="nav-number">2.1.1.</span> <span class="nav-text">所以，核心就是图（flow Graph，那神经网络结构在tensorflow里也就是一张图）</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#那么使用tensorflow核心主要的流程其实就是三步："><span class="nav-number">2.2.</span> <span class="nav-text">那么使用tensorflow核心主要的流程其实就是三步：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#必须理解和掌握的几个tensorflow概念："><span class="nav-number">2.3.</span> <span class="nav-text">必须理解和掌握的几个tensorflow概念：</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-tensor："><span class="nav-number">2.3.1.</span> <span class="nav-text">1. tensor：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-Variable"><span class="nav-number">2.3.2.</span> <span class="nav-text">2. Variable</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#创建Variable："><span class="nav-number">2.3.2.1.</span> <span class="nav-text">创建Variable：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#初始化"><span class="nav-number">2.3.2.2.</span> <span class="nav-text">初始化</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-placeholder"><span class="nav-number">2.3.3.</span> <span class="nav-text">3. placeholder</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-Session"><span class="nav-number">2.3.4.</span> <span class="nav-text">4. Session</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>
