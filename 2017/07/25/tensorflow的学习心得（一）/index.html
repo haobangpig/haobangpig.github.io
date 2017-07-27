@@ -93,18 +93,18 @@
 
 
 
-<meta name="description" content="对于tensorlfow 的认识和学习顺序本文是想描述以下两个问题： 1. tensorflow是什么，有什么函数必须理解自己的理解：tensorflow就是一个容器，这个容器里面呢，有一个图（data flow graph，其实就是我们的神经网络模型：model），并且这个图（模型）中包含了很多的tensor（张量，目前我的理解，其实就是矩阵，也就是数据存放的方式，）。tensor可以这个flo">
+<meta name="description" content="对于tensorlfow 的认识和学习顺序 本文是想描述以下两个问题：  1. tensorflow是什么，有什么函数必须理解自己的理解：tensorflow就是一个容器，这个容器里面呢，有一个图（data flow graph，其实就是我们的神经网络模型：model），并且这个图（模型）中包含了很多的tensor（张量，目前我的理解，其实就是矩阵，也就是数据存放的方式，）。tensor可以这个f">
 <meta name="keywords" content="tensorflow">
 <meta property="og:type" content="article">
 <meta property="og:title" content="tensorflow的学习心得（一）">
 <meta property="og:url" content="http://yoursite.com/2017/07/25/tensorflow的学习心得（一）/index.html">
 <meta property="og:site_name" content="棒呵呵">
-<meta property="og:description" content="对于tensorlfow 的认识和学习顺序本文是想描述以下两个问题： 1. tensorflow是什么，有什么函数必须理解自己的理解：tensorflow就是一个容器，这个容器里面呢，有一个图（data flow graph，其实就是我们的神经网络模型：model），并且这个图（模型）中包含了很多的tensor（张量，目前我的理解，其实就是矩阵，也就是数据存放的方式，）。tensor可以这个flo">
+<meta property="og:description" content="对于tensorlfow 的认识和学习顺序 本文是想描述以下两个问题：  1. tensorflow是什么，有什么函数必须理解自己的理解：tensorflow就是一个容器，这个容器里面呢，有一个图（data flow graph，其实就是我们的神经网络模型：model），并且这个图（模型）中包含了很多的tensor（张量，目前我的理解，其实就是矩阵，也就是数据存放的方式，）。tensor可以这个f">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-07-25T12:22:02.000Z">
+<meta property="og:updated_time" content="2017-07-26T07:45:34.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="tensorflow的学习心得（一）">
-<meta name="twitter:description" content="对于tensorlfow 的认识和学习顺序本文是想描述以下两个问题： 1. tensorflow是什么，有什么函数必须理解自己的理解：tensorflow就是一个容器，这个容器里面呢，有一个图（data flow graph，其实就是我们的神经网络模型：model），并且这个图（模型）中包含了很多的tensor（张量，目前我的理解，其实就是矩阵，也就是数据存放的方式，）。tensor可以这个flo">
+<meta name="twitter:description" content="对于tensorlfow 的认识和学习顺序 本文是想描述以下两个问题：  1. tensorflow是什么，有什么函数必须理解自己的理解：tensorflow就是一个容器，这个容器里面呢，有一个图（data flow graph，其实就是我们的神经网络模型：model），并且这个图（模型）中包含了很多的tensor（张量，目前我的理解，其实就是矩阵，也就是数据存放的方式，）。tensor可以这个f">
 
 
 
@@ -353,7 +353,9 @@
       
 
       
-        <h2 id="对于tensorlfow-的认识和学习顺序"><a href="#对于tensorlfow-的认识和学习顺序" class="headerlink" title="对于tensorlfow 的认识和学习顺序"></a>对于tensorlfow 的认识和学习顺序</h2><p>本文是想描述以下两个问题：</p>
+        <h2 id="对于tensorlfow-的认识和学习顺序"><a href="#对于tensorlfow-的认识和学习顺序" class="headerlink" title="对于tensorlfow 的认识和学习顺序"></a>对于tensorlfow 的认识和学习顺序</h2><blockquote>
+<p>本文是想描述以下两个问题：</p>
+</blockquote>
 <h2 id="1-tensorflow是什么，有什么函数必须理解"><a href="#1-tensorflow是什么，有什么函数必须理解" class="headerlink" title="1. tensorflow是什么，有什么函数必须理解"></a><strong>1. tensorflow是什么，有什么函数必须理解</strong></h2><h3 id="自己的理解："><a href="#自己的理解：" class="headerlink" title="自己的理解："></a><strong>自己的理解：</strong></h3><p>tensorflow就是一个<strong>容器</strong>，这个容器里面呢，有一个图（<strong>data flow graph</strong>，其实就是我们的神经网络模型：model），并且这个图（模型）中包含了很多的tensor（张量，目前我的理解，其实就是矩阵，也就是数据存放的方式，）。tensor可以这个flow graph中运算，输入，输出。<br>因此这就是为什么叫tensorflow。</p>
 <a id="more"></a>
 <h4 id="所以，核心就是图（flow-Graph，那神经网络结构在tensorflow里也就是一张图）"><a href="#所以，核心就是图（flow-Graph，那神经网络结构在tensorflow里也就是一张图）" class="headerlink" title="所以，核心就是图（flow Graph，那神经网络结构在tensorflow里也就是一张图）"></a>所以，核心就是<strong>图</strong>（flow Graph，那神经网络结构在tensorflow里也就是一张图）</h4><h3 id="那么使用tensorflow核心主要的流程其实就是三步："><a href="#那么使用tensorflow核心主要的流程其实就是三步：" class="headerlink" title="那么使用tensorflow核心主要的流程其实就是三步："></a>那么使用tensorflow核心<strong>主要的流程</strong>其实就是三步：</h3><ol>
@@ -406,10 +408,13 @@
 <h4 id="4-Session"><a href="#4-Session" class="headerlink" title="4. Session"></a>4. Session</h4><p>在刚刚的代码实例中，已经演示了很多有session的东西，上面也讲了session的概念，其实就是相当于你去访问一个网页，打开了一个新的窗口，在这个窗口上进行各种上网的活动（各种函数的运算），然后关掉这个窗口，你的运算也就终止了。</p>
 <p>##<strong>2. 对于现在的目标来说，如何更好，更快的使用tensorflow去搭建自己的神经网络</strong></p>
 <p>根据第一个问题的描述，我觉得已经对tensorflow有个大致的理解和入门了。<br>现在我觉得需要的是实战例子，理解了实战的例子后，才能更好的编码。</p>
-<p>目前来说我也处于这一阶段，正在学习别人写代码的角度去学习，那么我想推荐一个人的视频，这个人边写边讲解，不懂得，可以停下来查查资料</p>
-<p>需要翻墙：</p>
-<p><a href="https://www.youtube.com/watch?v=oYbVFhK_olY&amp;list=PLQVvvaa0QuDfKTOs3Keq_kaG2P55YRn5v&amp;index=43" target="_blank" rel="external">https://www.youtube.com/watch?v=oYbVFhK_olY&amp;list=PLQVvvaa0QuDfKTOs3Keq_kaG2P55YRn5v&amp;index=43</a></p>
+<p>目前来说我也处于这一阶段，正在学习别人写代码的角度去学习，那么我想推荐一个人的视频，这个人边写边讲解，不懂得，可以停下来查查资料。<br>为了实现我的研究课题，我主要分为一下几个方面开始实验：</p>
+<p><strong>需要翻墙：</strong><br><br><a href="https://www.youtube.com/watch?v=oYbVFhK_olY&amp;list=PLQVvvaa0QuDfKTOs3Keq_kaG2P55YRn5v&amp;index=43" target="_blank" rel="external">https://www.youtube.com/watch?v=oYbVFhK_olY&amp;list=PLQVvvaa0QuDfKTOs3Keq_kaG2P55YRn5v&amp;index=43</a></p>
 <p>嘛，正在跟着视频一点一点的学，然后根据自己的课题需要进行编码，有时间的话，我会把这两天学习到的代码和大家分享。</p>
+<p>第一步：充分理解基本的神经网络结构：实现MNIST的手写识别<br><br><a href="https://www.youtube.com/watch?v=BhpvH5DuVu8&amp;index=46&amp;list=PLQVvvaa0QuDfKTOs3Keq_kaG2P55YRn5v" target="_blank" rel="external">https://www.youtube.com/watch?v=BhpvH5DuVu8&amp;index=46&amp;list=PLQVvvaa0QuDfKTOs3Keq_kaG2P55YRn5v</a></p>
+<p>第二步：理解CNN中的网络结构，如何用CNN实现MNIST的手写识别<br><br><a href="https://www.youtube.com/watch?v=7Wq-QmMT4gM&amp;index=56&amp;list=PLQVvvaa0QuDfKTOs3Keq_kaG2P55YRn5v" target="_blank" rel="external">https://www.youtube.com/watch?v=7Wq-QmMT4gM&amp;index=56&amp;list=PLQVvvaa0QuDfKTOs3Keq_kaG2P55YRn5v</a></p>
+<p>第三步：如何用自己的数据和CNN结构去识别<br><br><a href="https://www.youtube.com/watch?v=gT4F3HGYXf4&amp;index=63&amp;list=PLQVvvaa0QuDfKTOs3Keq_kaG2P55YRn5v" target="_blank" rel="external">https://www.youtube.com/watch?v=gT4F3HGYXf4&amp;index=63&amp;list=PLQVvvaa0QuDfKTOs3Keq_kaG2P55YRn5v</a></p>
+<p>第四步：基于源代码的基础上，在CNN的数据中加一层CNN结构<br><br><a href="http://www.wildml.com/2015/12/implementing-a-cnn-for-text-classification-in-tensorflow/" target="_blank" rel="external">http://www.wildml.com/2015/12/implementing-a-cnn-for-text-classification-in-tensorflow/</a></p>
 
       
     </div>
@@ -565,7 +570,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-count">9</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -587,7 +592,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-count">5</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
