@@ -356,13 +356,26 @@
 
       
         
-          
-            <blockquote>
+          <blockquote>
 <p>这篇文章是解析CNN在NLP中的最基础的应用，将会一点一点地解析每一个函数和变量的关系<br><br>1.整体结构的概念理解：<br><br><a href="http://www.wildml.com/2015/11/understanding-convolutional-neural-networks-for-nlp/" target="_blank" rel="external">http://www.wildml.com/2015/11/understanding-convolutional-neural-networks-for-nlp/</a><br><br>2.具体函数实现的解析:<br><br><a href="http://www.wildml.com/2015/12/implementing-a-cnn-for-text-classification-in-tensorflow/" target="_blank" rel="external">http://www.wildml.com/2015/12/implementing-a-cnn-for-text-classification-in-tensorflow/</a></p>
 </blockquote>
 <p>本文将要介绍：</p>
-
-          
+<p><strong>1. 如何构建CNN在NLP中的模型<br></strong><br><strong>2. 如何在训练这个模型<br></strong><br><strong>3. input中如何使用pre-trained word embedding<br></strong><br><strong>4. 二层CNN模型的尝试</strong></p>
+<h3 id="1-如何构建CNN在NLP中的模型"><a href="#1-如何构建CNN在NLP中的模型" class="headerlink" title="1. 如何构建CNN在NLP中的模型"></a><strong>1. 如何构建CNN在NLP中的模型</strong></h3><p><img src="/images/blog_image/CNN_NLP_model.png" alt=""></p>
+<p>首先，我们先来看一下整篇代码的结构：<br></p>
+<ol>
+<li>第一层是把embeds words转换层low-dimensional vectors（低纬向量）<br></li>
+<li>第二层使用多个filter size去卷积我们第一层的所输出的vectors<br></li>
+<li>第三层我们使用max-pooling后把所有的feature连接，得到一个long featurevector,这里我们加入dropout 的正规化（regularzation）<br></li>
+<li>最后一层，我们使用softmax去识别我们的result。</li>
+</ol>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/08/02/tensorflow的学习心得（四）CNN-in-NLP代码详解/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
