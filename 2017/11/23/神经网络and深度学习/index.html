@@ -77,7 +77,7 @@
 <link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="mac," />
+  <meta name="keywords" content="神经网络&深度学习," />
 
 
 
@@ -93,18 +93,21 @@
 
 
 
-<meta name="description" content="昨天我试图把我的mkv或者avi,rmvb文件转成mp3，但是找了好多软件都要收费或者太慢，最终找到了一款破解版的软件与大家分享：  格式工厂（Any Video Coberter Pro） 首先去下载：  http://www.pc6.com/mac/116820.html  解压缩后，打开dmg文件安装  之后在页面中输入账号密码   name:www.macmofo.com sn:0000">
-<meta name="keywords" content="mac">
+<meta name="description" content="这篇博文，是为了在写毕业论文中有个清晰的思路和这半年来对于学习深度学习的一个总结。 那么为了让自己更好的理解和消化这些知识，我会在每一个小节讲解前，先给自己提出几个问题，然后通过说明这些问题的时候，进行归纳和总结。  目的1.想用自己的话总结出对神经网络和深度学习的理解2.一个最基本的神经网络，从输入到输出的过程中涉及到的每一个知识点都要展开归纳3.深层次的CNN结构和word2vec的训练过程">
+<meta name="keywords" content="神经网络&amp;深度学习">
 <meta property="og:type" content="article">
-<meta property="og:title" content="mkv to mp3 on mac">
-<meta property="og:url" content="http://yoursite.com/2017/07/27/mkv-to-mp3-on-mac/index.html">
+<meta property="og:title" content="神经网络and深度学习">
+<meta property="og:url" content="http://yoursite.com/2017/11/23/神经网络and深度学习/index.html">
 <meta property="og:site_name" content="棒呵呵">
-<meta property="og:description" content="昨天我试图把我的mkv或者avi,rmvb文件转成mp3，但是找了好多软件都要收费或者太慢，最终找到了一款破解版的软件与大家分享：  格式工厂（Any Video Coberter Pro） 首先去下载：  http://www.pc6.com/mac/116820.html  解压缩后，打开dmg文件安装  之后在页面中输入账号密码   name:www.macmofo.com sn:0000">
+<meta property="og:description" content="这篇博文，是为了在写毕业论文中有个清晰的思路和这半年来对于学习深度学习的一个总结。 那么为了让自己更好的理解和消化这些知识，我会在每一个小节讲解前，先给自己提出几个问题，然后通过说明这些问题的时候，进行归纳和总结。  目的1.想用自己的话总结出对神经网络和深度学习的理解2.一个最基本的神经网络，从输入到输出的过程中涉及到的每一个知识点都要展开归纳3.深层次的CNN结构和word2vec的训练过程">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-07-27T05:56:10.000Z">
+<meta property="og:image" content="http://yoursite.com/images/blog_image/深度学习总结.png">
+<meta property="og:image" content="http://yoursite.com/images/blog_image/感知机.png">
+<meta property="og:updated_time" content="2017-11-25T05:05:06.279Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="mkv to mp3 on mac">
-<meta name="twitter:description" content="昨天我试图把我的mkv或者avi,rmvb文件转成mp3，但是找了好多软件都要收费或者太慢，最终找到了一款破解版的软件与大家分享：  格式工厂（Any Video Coberter Pro） 首先去下载：  http://www.pc6.com/mac/116820.html  解压缩后，打开dmg文件安装  之后在页面中输入账号密码   name:www.macmofo.com sn:0000">
+<meta name="twitter:title" content="神经网络and深度学习">
+<meta name="twitter:description" content="这篇博文，是为了在写毕业论文中有个清晰的思路和这半年来对于学习深度学习的一个总结。 那么为了让自己更好的理解和消化这些知识，我会在每一个小节讲解前，先给自己提出几个问题，然后通过说明这些问题的时候，进行归纳和总结。  目的1.想用自己的话总结出对神经网络和深度学习的理解2.一个最基本的神经网络，从输入到输出的过程中涉及到的每一个知识点都要展开归纳3.深层次的CNN结构和word2vec的训练过程">
+<meta name="twitter:image" content="http://yoursite.com/images/blog_image/深度学习总结.png">
 
 
 
@@ -132,13 +135,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2017/07/27/mkv-to-mp3-on-mac/"/>
+  <link rel="canonical" href="http://yoursite.com/2017/11/23/神经网络and深度学习/"/>
 
 
 
 
 
-  <title>mkv to mp3 on mac | 棒呵呵</title>
+  <title>神经网络and深度学习 | 棒呵呵</title>
   
 
 
@@ -267,7 +270,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/07/27/mkv-to-mp3-on-mac/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/11/23/神经网络and深度学习/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="haobangpig">
@@ -284,7 +287,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">mkv to mp3 on mac</h1>
+          <h1 class="post-title" itemprop="name headline">神经网络and深度学习</h1>
         
 
         <div class="post-meta">
@@ -296,8 +299,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-07-27T14:46:45+09:00">
-                2017-07-27
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-11-23T15:32:17+09:00">
+                2017-11-23
               </time>
             
 
@@ -315,9 +318,9 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2017/07/27/mkv-to-mp3-on-mac/#comments" itemprop="discussionUrl">
+                <a href="/2017/11/23/神经网络and深度学习/#comments" itemprop="discussionUrl">
                   <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2017/07/27/mkv-to-mp3-on-mac/" itemprop="commentCount"></span>
+                        data-disqus-identifier="2017/11/23/神经网络and深度学习/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -325,7 +328,7 @@
 
           
           
-             <span id="/2017/07/27/mkv-to-mp3-on-mac/" class="leancloud_visitors" data-flag-title="mkv to mp3 on mac">
+             <span id="/2017/11/23/神经网络and深度学习/" class="leancloud_visitors" data-flag-title="神经网络and深度学习">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -354,21 +357,27 @@
 
       
         <blockquote>
-<p>昨天我试图把我的mkv或者avi,rmvb文件转成mp3，但是找了好多软件都要收费或者太慢，最终找到了一款破解版的软件与大家分享：</p>
+<p>这篇博文，是为了在写毕业论文中有个清晰的思路和这半年来对于学习深度学习的一个总结。<br></p>
+<p>那么为了让自己更好的理解和消化这些知识，我会在每一个小节讲解前，先给自己提出几个问题，然后通过说明这些问题的时候，进行归纳和总结。</p>
 </blockquote>
-<h2 id="格式工厂（Any-Video-Coberter-Pro）"><a href="#格式工厂（Any-Video-Coberter-Pro）" class="headerlink" title="格式工厂（Any Video Coberter Pro）"></a><strong>格式工厂（Any Video Coberter Pro）</strong></h2><ul>
-<li>首先去下载：</li>
-</ul>
-<p><strong><a href="http://www.pc6.com/mac/116820.html" target="_blank" rel="external">http://www.pc6.com/mac/116820.html</a></strong></p>
-<ul>
-<li><p>解压缩后，打开dmg文件安装</p>
-</li>
-<li><p>之后在页面中输入账号密码</p>
-</li>
-</ul>
-<p><strong>name:</strong><br><br>www.macmofo.com</p>
-<p><strong>sn:</strong><br><br>000016-D84U8Q-8BN16B-WP2BV6-9RA73A-X7D4V3-M6P35J-86YPKV-YB9U6B-QTD2MF</p>
-<p>参考资料：<br><a href="http://www.pc6.com/edu/69428.html" target="_blank" rel="external">http://www.pc6.com/edu/69428.html</a></p>
+<h2 id="目的"><a href="#目的" class="headerlink" title="目的"></a>目的</h2><p><strong>1.想用自己的话总结出对神经网络和深度学习的理解</strong><br><br><strong>2.一个最基本的神经网络，从输入到输出的过程中涉及到的每一个知识点都要展开归纳</strong><br><br>3.<strong>深层次的CNN结构和word2vec的训练过程</strong><br></p>
+<p>##博文结构<br><img src="/images/blog_image/深度学习总结.png" alt=""></p>
+<p>##1.神经网络和深度学习的概念</p>
+<p>###1&gt;神经网络</p>
+<p><strong>问题1.什么是神经网络？如何解释给一个没入门的人？</strong><br><br><strong>问题2.神经网络里面有什么，基础结构是什么？</strong><br><br><strong>问题3.神经网络是如何被训练的？</strong><br><br><strong>问题4.神经网络的输出层是什么，如何设计的？</strong><br></p>
+<p>问题1：<br><br>神经网络是一种运算模型，由很多节点（或者神经元）相互连接而成，去计算或者预测等操作的模型结构。可以根据外界信息去自适应改变内部结构的模型。</p>
+<p>比如说，你有一堆猫的照片，然后放到这个运算模型（神经网络）中，然后，通过一系列的运算，能够自适应的改变内部结构，使得下次再来一张猫的照片的时候，能够预测出，这就是一张猫，而不是狗。。。</p>
+<p>问题2：<br><br>这个问题，我们先了解下几个概念<br><br>1.感知机（perceptron）<br><br>2.权重（weight）<br><br>3.偏置（bias）<br><br>4.激活函数（activation function）</p>
+<p>1.首先什么是感知机<br><img src="/images/blog_image/感知机.png" alt=""></p>
+<p>感知机就是输入是几个二进制，输出是一位单独的二进制。<br>那么通过权重（weight），偏置（bias）表示各个输入对输出的影响。<br>通过y（输出）和θ的比较，得到一个决策。<br>比如y（输出）大于θ时，那么就是1，小于等于θ时就是0.<br>如果θ=3，那么需要满足天气好，交通方便，女朋友也去的条件才能满足。<br>即，降低θ的值意味着参加节日的意愿更强。</p>
+<p>2.权重（weight）：是决定每一个二进制（神经元）对于下一个神经元的影响程度<br></p>
+<p>3.偏置（bias）：因为在很多神经网络中，我们的分割区间不是在于原点附近的，那么我们就需要bias去上下的移动，所以我们需要bias的变量。</p>
+<p>4.激活函数（activation function）：<br>是提供网络的非线性建模能力。加入非线性因素的，因为线性模型的表达能力不够（y=ax+b）。【后面会单独对每一个激活函数进行归纳总结】</p>
+<p>那么现在介绍一下，神经网络的结构。</p>
+<p>神经网络分为3层结构：</p>
+<p>参考资料：<br><br>1.neural netwoks and deep learning</p>
+<p><a href="http://neuralnetworksanddeeplearning.com/" target="_blank" rel="external">http://neuralnetworksanddeeplearning.com/</a></p>
+<p>2.知乎：神经网络中的激活函数是什么</p>
 
       
     </div>
@@ -419,7 +428,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/mac/" rel="tag"># mac</a>
+            <a href="/tags/神经网络-深度学习/" rel="tag"># 神经网络&深度学习</a>
           
         </div>
       
@@ -432,8 +441,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/07/27/Install-mpv-on-mac/" rel="next" title="Install mpv">
-                <i class="fa fa-chevron-left"></i> Install mpv
+              <a href="/2017/08/14/日语基础——助词详解/" rel="next" title="日语基础——助词详解">
+                <i class="fa fa-chevron-left"></i> 日语基础——助词详解
               </a>
             
           </div>
@@ -442,8 +451,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/08/01/tensorflow的学习心得（三）CNN代码详解/" rel="prev" title="tensorflow的学习心得（三）CNN代码详解">
-                tensorflow的学习心得（三）CNN代码详解 <i class="fa fa-chevron-right"></i>
+              <a href="/2017/11/27/mac-lauchpad图标显示错误/" rel="prev" title="mac_lauchpad图标显示错误">
+                mac_lauchpad图标显示错误 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -601,7 +610,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#格式工厂（Any-Video-Coberter-Pro）"><span class="nav-number">1.</span> <span class="nav-text">格式工厂（Any Video Coberter Pro）</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#目的"><span class="nav-number">1.</span> <span class="nav-text">目的</span></a></li></ol></div>
             
 
           </div>
@@ -757,9 +766,9 @@
     
       <script type="text/javascript">
         var disqus_config = function () {
-          this.page.url = 'http://yoursite.com/2017/07/27/mkv-to-mp3-on-mac/';
-          this.page.identifier = '2017/07/27/mkv-to-mp3-on-mac/';
-          this.page.title = 'mkv to mp3 on mac';
+          this.page.url = 'http://yoursite.com/2017/11/23/神经网络and深度学习/';
+          this.page.identifier = '2017/11/23/神经网络and深度学习/';
+          this.page.title = '神经网络and深度学习';
         };
         var d = document, s = d.createElement('script');
         s.src = 'https://haobangpig-github-io.disqus.com/embed.js';
