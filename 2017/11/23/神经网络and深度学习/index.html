@@ -103,7 +103,8 @@
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://yoursite.com/images/blog_image/深度学习总结.png">
 <meta property="og:image" content="http://yoursite.com/images/blog_image/感知机.png">
-<meta property="og:updated_time" content="2017-11-25T05:05:06.279Z">
+<meta property="og:image" content="http://yoursite.com/images/blog_image/基础神经网络.jpeg">
+<meta property="og:updated_time" content="2017-12-01T05:35:11.013Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="神经网络and深度学习">
 <meta name="twitter:description" content="这篇博文，是为了在写毕业论文中有个清晰的思路和这半年来对于学习深度学习的一个总结。 那么为了让自己更好的理解和消化这些知识，我会在每一个小节讲解前，先给自己提出几个问题，然后通过说明这些问题的时候，进行归纳和总结。  目的1.想用自己的话总结出对神经网络和深度学习的理解2.一个最基本的神经网络，从输入到输出的过程中涉及到的每一个知识点都要展开归纳3.深层次的CNN结构和word2vec的训练过程">
@@ -361,20 +362,28 @@
 <p>那么为了让自己更好的理解和消化这些知识，我会在每一个小节讲解前，先给自己提出几个问题，然后通过说明这些问题的时候，进行归纳和总结。</p>
 </blockquote>
 <h2 id="目的"><a href="#目的" class="headerlink" title="目的"></a>目的</h2><p><strong>1.想用自己的话总结出对神经网络和深度学习的理解</strong><br><br><strong>2.一个最基本的神经网络，从输入到输出的过程中涉及到的每一个知识点都要展开归纳</strong><br><br>3.<strong>深层次的CNN结构和word2vec的训练过程</strong><br></p>
-<p>##博文结构<br><img src="/images/blog_image/深度学习总结.png" alt=""></p>
-<p>##1.神经网络和深度学习的概念</p>
-<p>###1&gt;神经网络</p>
-<p><strong>问题1.什么是神经网络？如何解释给一个没入门的人？</strong><br><br><strong>问题2.神经网络里面有什么，基础结构是什么？</strong><br><br><strong>问题3.神经网络是如何被训练的？</strong><br><br><strong>问题4.神经网络的输出层是什么，如何设计的？</strong><br></p>
+<h2 id="博文结构"><a href="#博文结构" class="headerlink" title="博文结构"></a>博文结构</h2><p><img src="/images/blog_image/深度学习总结.png" alt=""></p>
+<h2 id="1-神经网络和深度学习的概念"><a href="#1-神经网络和深度学习的概念" class="headerlink" title="1.神经网络和深度学习的概念"></a>1.神经网络和深度学习的概念</h2><h3 id="1-gt-神经网络"><a href="#1-gt-神经网络" class="headerlink" title="1&gt;神经网络"></a>1&gt;神经网络</h3><p><strong>问题1.什么是神经网络？如何解释给一个没入门的人？</strong><br><br><strong>问题2.神经网络里面有什么，基础结构是什么？</strong><br><br><strong>问题3.神经网络是如何被训练的？</strong><br><br><strong>问题4.神经网络的输出层是什么，如何设计的？</strong><br></p>
+<p>–</p>
 <p>问题1：<br><br>神经网络是一种运算模型，由很多节点（或者神经元）相互连接而成，去计算或者预测等操作的模型结构。可以根据外界信息去自适应改变内部结构的模型。</p>
-<p>比如说，你有一堆猫的照片，然后放到这个运算模型（神经网络）中，然后，通过一系列的运算，能够自适应的改变内部结构，使得下次再来一张猫的照片的时候，能够预测出，这就是一张猫，而不是狗。。。</p>
-<p>问题2：<br><br>这个问题，我们先了解下几个概念<br><br>1.感知机（perceptron）<br><br>2.权重（weight）<br><br>3.偏置（bias）<br><br>4.激活函数（activation function）</p>
+<p>比如说，你有一堆猫的照片，然后放到这个运算模型（神经网络）中，然后，通过一系列的运算，能够自适应的改变内部结构，使得下次再来一张猫的照片的时候，能够预测出，这就是一张猫，而不是狗。。。那么这种运算模型就是神经网络。</p>
+<p>–<br>问题2：<br><br>这个问题，我们先了解下几个概念<br><br>1.感知机（perceptron）（和神经元之间的关系）<br><br>2.权重（weight）<br><br>3.偏置（bias）<br><br>4.激活函数（activation function）</p>
 <p>1.首先什么是感知机<br><img src="/images/blog_image/感知机.png" alt=""></p>
-<p>感知机就是输入是几个二进制，输出是一位单独的二进制。<br>那么通过权重（weight），偏置（bias）表示各个输入对输出的影响。<br>通过y（输出）和θ的比较，得到一个决策。<br>比如y（输出）大于θ时，那么就是1，小于等于θ时就是0.<br>如果θ=3，那么需要满足天气好，交通方便，女朋友也去的条件才能满足。<br>即，降低θ的值意味着参加节日的意愿更强。</p>
+<p>感知机就是输入是几个二进制，输出是一位单独的二进制。<br>那么通过权重（weight），偏置（bias）表示各个输入对输出的影响。<br>通过y（输出）和θ的比较，得到一个决策。</p>
+<p>例子：<br><a href="http://neuralnetworksanddeeplearning.com/chap1.html" target="_blank" rel="external">http://neuralnetworksanddeeplearning.com/chap1.html</a></p>
+<p>比如y（输出）大于θ时，那么就是1，小于等于θ时就是0.<br>如果θ=3，那么需要满足天气好，交通方便，女朋友也去的条件才能满足。<br>即，降低θ的值意味着参加节日的意愿更强。</p>
+<p>神经网络中，感知机指的是单层的神经网络，只能做一个简单的线性可分函数（比如，只区别0或1）。想要做复杂点的异或等的话，那么需要的是多重感知机（multiply perception）</p>
+<p>这里强调一下感知机和神经元的关系。<br><br><strong>神经元指的是判断的基础，比如说上图中，每一个圆圈就表示一个神经元</strong><br><br><strong>感知机指的是多个神经元（输入信号）和一个输出信号的结构。比如说上图的整体就是一个2个input的感知机</strong></p>
 <p>2.权重（weight）：是决定每一个二进制（神经元）对于下一个神经元的影响程度<br></p>
 <p>3.偏置（bias）：因为在很多神经网络中，我们的分割区间不是在于原点附近的，那么我们就需要bias去上下的移动，所以我们需要bias的变量。</p>
 <p>4.激活函数（activation function）：<br>是提供网络的非线性建模能力。加入非线性因素的，因为线性模型的表达能力不够（y=ax+b）。【后面会单独对每一个激活函数进行归纳总结】</p>
+<hr>
 <p>那么现在介绍一下，神经网络的结构。</p>
-<p>神经网络分为3层结构：</p>
+<p>神经网络分为3层结构：<br></p>
+<p><img src="/images/blog_image/基础神经网络.jpeg" alt=""></p>
+<p>上图可以看到，分为3层结构</p>
+<p>输入层，隐藏层，输出层。</p>
+<p>这是一个最基本的神经网络的结构了，其实不管是在CNN，RNN的学习中，它们主要变化的是隐藏层的，我们在学习它们的时候，要时时刻刻把握输入层是什么，输出层又是什么，中间的隐藏层再一点点的拨开，就能够比较好的理解它们。</p>
 <p>参考资料：<br><br>1.neural netwoks and deep learning</p>
 <p><a href="http://neuralnetworksanddeeplearning.com/" target="_blank" rel="external">http://neuralnetworksanddeeplearning.com/</a></p>
 <p>2.知乎：神经网络中的激活函数是什么</p>
@@ -610,7 +619,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#目的"><span class="nav-number">1.</span> <span class="nav-text">目的</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#目的"><span class="nav-number">1.</span> <span class="nav-text">目的</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#博文结构"><span class="nav-number">2.</span> <span class="nav-text">博文结构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-神经网络和深度学习的概念"><span class="nav-number">3.</span> <span class="nav-text">1.神经网络和深度学习的概念</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-gt-神经网络"><span class="nav-number">3.1.</span> <span class="nav-text">1>神经网络</span></a></li></ol></li></ol></div>
             
 
           </div>
