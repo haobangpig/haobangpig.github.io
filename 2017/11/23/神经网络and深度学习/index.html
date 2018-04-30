@@ -104,7 +104,7 @@
 <meta property="og:image" content="http://yoursite.com/images/blog_image/深度学习总结.png">
 <meta property="og:image" content="http://yoursite.com/images/blog_image/感知机.png">
 <meta property="og:image" content="http://yoursite.com/images/blog_image/基础神经网络.jpeg">
-<meta property="og:updated_time" content="2017-12-01T05:35:11.013Z">
+<meta property="og:updated_time" content="2017-12-01T11:45:03.965Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="神经网络and深度学习">
 <meta name="twitter:description" content="这篇博文，是为了在写毕业论文中有个清晰的思路和这半年来对于学习深度学习的一个总结。 那么为了让自己更好的理解和消化这些知识，我会在每一个小节讲解前，先给自己提出几个问题，然后通过说明这些问题的时候，进行归纳和总结。  目的1.想用自己的话总结出对神经网络和深度学习的理解2.一个最基本的神经网络，从输入到输出的过程中涉及到的每一个知识点都要展开归纳3.深层次的CNN结构和word2vec的训练过程">
@@ -364,10 +364,11 @@
 <h2 id="目的"><a href="#目的" class="headerlink" title="目的"></a>目的</h2><p><strong>1.想用自己的话总结出对神经网络和深度学习的理解</strong><br><br><strong>2.一个最基本的神经网络，从输入到输出的过程中涉及到的每一个知识点都要展开归纳</strong><br><br>3.<strong>深层次的CNN结构和word2vec的训练过程</strong><br></p>
 <h2 id="博文结构"><a href="#博文结构" class="headerlink" title="博文结构"></a>博文结构</h2><p><img src="/images/blog_image/深度学习总结.png" alt=""></p>
 <h2 id="1-神经网络和深度学习的概念"><a href="#1-神经网络和深度学习的概念" class="headerlink" title="1.神经网络和深度学习的概念"></a>1.神经网络和深度学习的概念</h2><h3 id="1-gt-神经网络"><a href="#1-gt-神经网络" class="headerlink" title="1&gt;神经网络"></a>1&gt;神经网络</h3><p><strong>问题1.什么是神经网络？如何解释给一个没入门的人？</strong><br><br><strong>问题2.神经网络里面有什么，基础结构是什么？</strong><br><br><strong>问题3.神经网络是如何被训练的？</strong><br><br><strong>问题4.神经网络的输出层是什么，如何设计的？</strong><br></p>
-<p>–</p>
+<hr>
 <p>问题1：<br><br>神经网络是一种运算模型，由很多节点（或者神经元）相互连接而成，去计算或者预测等操作的模型结构。可以根据外界信息去自适应改变内部结构的模型。</p>
 <p>比如说，你有一堆猫的照片，然后放到这个运算模型（神经网络）中，然后，通过一系列的运算，能够自适应的改变内部结构，使得下次再来一张猫的照片的时候，能够预测出，这就是一张猫，而不是狗。。。那么这种运算模型就是神经网络。</p>
-<p>–<br>问题2：<br><br>这个问题，我们先了解下几个概念<br><br>1.感知机（perceptron）（和神经元之间的关系）<br><br>2.权重（weight）<br><br>3.偏置（bias）<br><br>4.激活函数（activation function）</p>
+<hr>
+<p>问题2：<br><br>这个问题，我们先了解下几个概念<br><br>1.感知机（perceptron）（和神经元之间的关系）<br><br>2.权重（weight）<br><br>3.偏置（bias）<br><br>4.激活函数（activation function）</p>
 <p>1.首先什么是感知机<br><img src="/images/blog_image/感知机.png" alt=""></p>
 <p>感知机就是输入是几个二进制，输出是一位单独的二进制。<br>那么通过权重（weight），偏置（bias）表示各个输入对输出的影响。<br>通过y（输出）和θ的比较，得到一个决策。</p>
 <p>例子：<br><a href="http://neuralnetworksanddeeplearning.com/chap1.html" target="_blank" rel="external">http://neuralnetworksanddeeplearning.com/chap1.html</a></p>
@@ -382,8 +383,12 @@
 <p>神经网络分为3层结构：<br></p>
 <p><img src="/images/blog_image/基础神经网络.jpeg" alt=""></p>
 <p>上图可以看到，分为3层结构</p>
+<p>（实际上，神经网络是将大量之前讲到的感知机进行组合，用不懂的方法连接并作用在不同的激活函数上）</p>
 <p>输入层，隐藏层，输出层。</p>
 <p>这是一个最基本的神经网络的结构了，其实不管是在CNN，RNN的学习中，它们主要变化的是隐藏层的，我们在学习它们的时候，要时时刻刻把握输入层是什么，输出层又是什么，中间的隐藏层再一点点的拨开，就能够比较好的理解它们。</p>
+<hr>
+<p>问题3：<br></p>
+<p>那么神经网络是如何被训练的，每一层又发生了什么，让我们来一点点的说明。</p>
 <p>参考资料：<br><br>1.neural netwoks and deep learning</p>
 <p><a href="http://neuralnetworksanddeeplearning.com/" target="_blank" rel="external">http://neuralnetworksanddeeplearning.com/</a></p>
 <p>2.知乎：神经网络中的激活函数是什么</p>
@@ -542,7 +547,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">16</span>
+                <span class="site-state-item-count">18</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -642,7 +647,7 @@
         <div class="copyright" >
   
   &copy;  2016 - 
-  <span itemprop="copyrightYear">2017</span>
+  <span itemprop="copyrightYear">2018</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
