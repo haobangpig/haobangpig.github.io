@@ -373,12 +373,8 @@
 </li>
 <li><p>Gemfile: 相当于这个应用程序中依赖了哪些第三方的包，会用bundle去根据配置的需求去寻找这些gem，这样来说有个非常方便的好处，就是在配置不同电脑的时候，使用相同版本的gem。就和vagrant中，使用相同的配置环境，进行开发一样。</p>
 </li>
-<li><p>Rake: rake命令就相当于linux 中的make 命令，把源码编译成可执行的程序。</p>
+<li><p>Rake: rake命令就相当于linux 中的make 命令，把源码编译成可执行的程序。<br>在rails5之前，ruby on rails 大量使用了rake命令。最常用的两个命令：<br>rake db:migrate（迁移数据库，更新数据模型）和rake test（运行自动化测试组件）。<br>使用rake时确保使用的是Gemfile文件中指定的版本。<br>rails5之前版本：bundle exec rake db:migrate</p>
 </li>
-</ol>
-<p>在rails5之前，ruby on rails 大量使用了rake命令。最常用的两个命令：<br>rake db:migrate（迁移数据库，更新数据模型）和rake test（运行自动化测试组件）。</p>
-<p>使用rake时确保使用的是Gemfile文件中指定的版本。<br>rails5之前版本：bundle exec rake db:migrate</p>
-<ol>
 <li><p>Rakefile: Rake的执行命令的是由Rakefile来定义，相当于ruby版的makefile</p>
 </li>
 <li><p>Bundler: 是rails框架里面安装gemfile指定的各种库的工具</p>
