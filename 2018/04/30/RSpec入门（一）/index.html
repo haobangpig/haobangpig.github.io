@@ -101,7 +101,7 @@
 <meta property="og:site_name" content="棒呵呵">
 <meta property="og:description" content="这篇博客是关于RSpec的入门知识的，因为最近工作需要，所以找到了一些适合新手的入门材料，为了学习和归纳，这里做个简单翻译，有需要的可以去看看原文，省略了一些不必要的东西，也加入了一些自己的看法。  参考地址：使えるRSpec入門・その1「RSpecの基本的な構文や便利な機能を理解する」 开始RSpec很难吧，是不是特么的什么都不懂，关于这样的评论是经常能看到的。确实，因为RSpec独特的结构，">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-04-30T05:34:37.558Z">
+<meta property="og:updated_time" content="2018-05-06T06:49:19.502Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="RSpec入门（一）">
 <meta name="twitter:description" content="这篇博客是关于RSpec的入门知识的，因为最近工作需要，所以找到了一些适合新手的入门材料，为了学习和归纳，这里做个简单翻译，有需要的可以去看看原文，省略了一些不必要的东西，也加入了一些自己的看法。  参考地址：使えるRSpec入門・その1「RSpecの基本的な構文や便利な機能を理解する」 开始RSpec很难吧，是不是特么的什么都不懂，关于这样的评论是经常能看到的。确实，因为RSpec独特的结构，">
@@ -360,12 +360,54 @@
 <h2 id="开始"><a href="#开始" class="headerlink" title="开始"></a>开始</h2><p>RSpec很难吧，是不是特么的什么都不懂，关于这样的评论是经常能看到的。确实，因为RSpec独特的结构，以及有很多功能，[看起来很难]这样的情绪是很能理解的。</p>
 <p>但是，不仅仅只是RSpec，不管什么样的框架也是一样的，习惯了之后，都能够很顺利的写的，实际上个人认为[RSpec是很方便的]。 （这是原作者这么认为的，我到现在也是经常一脸懵逼…）</p>
 <p>这里总结的是，原作者认为最低限度的需要了解的RSpec的文章结构，已经经常被使用的功能做一个总结。</p>
-<p>本文的文章结构和功能如下：    </p>
+<p>本文的文章结构和功能如下</p>
 <ul>
-<li>111</li>
-<li>333‘</li>
-<li>444</li>
+<li>describe / it / expect 的作用</li>
+<li>describe的嵌套</li>
+<li>context的使用方法</li>
+<li>let / let！/ subject的使用方法</li>
+<li>shared_examples的使用方法</li>
+<li>shared_context的使用方法</li>
+<li>pending 和 skip的使用区分</li>
 </ul>
+<p>关于其他的当然还有后续，如果有需要请参考原文，比如说mock，CapybaraのDSL等等。</p>
+<h2 id="阅读适合的对象"><a href="#阅读适合的对象" class="headerlink" title="阅读适合的对象"></a>阅读适合的对象</h2><ul>
+<li>RSpec读起来真的头痛的初心者</li>
+<li>已经使用过很多次了，但是RSpec还是不知道是啥的经验者</li>
+<li>有着Ruby关系的项目，需要写RSpec测试的人员，但是仍有困惑的从其他测试平台的经验者</li>
+</ul>
+<h2 id="Ruby和Rails的版本"><a href="#Ruby和Rails的版本" class="headerlink" title="Ruby和Rails的版本"></a>Ruby和Rails的版本</h2><ul>
+<li>RSpec 3.10</li>
+<li>Ruby 2.1.3</li>
+</ul>
+<p>这次的博文，没有用rails，纯Ruby的代码。</p>
+<h2 id="关于RSpec的安装环境和方法"><a href="#关于RSpec的安装环境和方法" class="headerlink" title="关于RSpec的安装环境和方法"></a>关于RSpec的安装环境和方法</h2><p>这里原文当然也有粘贴方法，但是我这里就不详细讲了，需要的可以查询下其他资料。</p>
+<h2 id="第一步"><a href="#第一步" class="headerlink" title="第一步"></a>第一步</h2><h3 id="理解describe-it-expect的作用"><a href="#理解describe-it-expect的作用" class="headerlink" title="理解describe/it/expect的作用"></a>理解describe/it/expect的作用</h3><p>最简单的RSpec是这样的记述的：</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">describe <span class="string">'四则运算'</span> <span class="keyword">do</span></div><div class="line">	it <span class="string">'1+1 是 2 的时候'</span> <span class="keyword">do</span></div><div class="line">		expect(<span class="number">1</span>+<span class="number">1</span>).to eq <span class="number">2</span></div><div class="line">	<span class="keyword">end</span></div><div class="line"><span class="keyword">end</span></div></pre></td></tr></table></figure>
+<p>describe是test的分组的宣言，在这里‘是有关于四则运算的test’的声明。</p>
+<p>it 是test中是以example为单位的作用。it do …end中，expecting（和预期一致的值比较）如果全部pass的话，那么这个example就是pass（通过了）。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">expect（X）.to eq Y</div></pre></td></tr></table></figure>
+<p>这样的记述，就是一个expecting，并且<br>expect（1+1）.to eq 2这样的意义是[1+1的结果期待是2]的测试。</p>
+<blockquote>
+<p>把should变成expect的理由</p>
+</blockquote>
+<p>在RSpec的2.10以前，should是下面的方法的：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">(1+2).should eq 3</div><div class="line">#或者是</div><div class="line">(1+2).should == 3</div></pre></td></tr></table></figure>
+<p>然后，现在不使用should，而是使用expect的理由是，should是黑魔法，如果使用的话会有发生问题的可能，如果有想看详细的理由的，请看：<br>参考地址：<a href="http://rspec.info/blog/2012/06/rspecs-new-expectation-syntax/" target="_blank" rel="external">不用should的原因</a></p>
+<h3 id="复数的example"><a href="#复数的example" class="headerlink" title="复数的example"></a>复数的example</h3><p>在describe中，可以写复数的example（it do …end）：<br><figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">descibe <span class="string">'四则运算'</span> <span class="keyword">do</span></div><div class="line">  it <span class="string">'1+1要等于2'</span> <span class="keyword">do</span></div><div class="line">    expect(<span class="number">1</span> + <span class="number">1</span>).to eq <span class="number">2</span></div><div class="line">  <span class="keyword">end</span></div><div class="line">  it <span class="string">'10-1要等于9'</span> <span class="keyword">do</span></div><div class="line">    expect(<span class="number">10</span> - <span class="number">1</span>).to eq <span class="number">9</span></div><div class="line">  <span class="keyword">end</span></div><div class="line"><span class="keyword">end</span></div></pre></td></tr></table></figure></p>
+<p>那么如果实现测试的话，会有一下的结果</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">2 examples, 0 failures, 2 passed</div><div class="line"></div><div class="line">Finished in 0.002592 seconds</div><div class="line"></div><div class="line">Process finished with exit code 0</div></pre></td></tr></table></figure>
+<h3 id="复数的expecting"><a href="#复数的expecting" class="headerlink" title="复数的expecting"></a>复数的expecting</h3><p>在一个example中，可以有很多的expecting：<br><figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">describe <span class="string">'四則演算'</span> <span class="keyword">do</span></div><div class="line">  it <span class="string">'全部都可以通过'</span> <span class="keyword">do</span></div><div class="line">    expect(<span class="number">1</span> + <span class="number">2</span>).to eq <span class="number">3</span></div><div class="line">    expect(<span class="number">10</span> - <span class="number">1</span>).to eq <span class="number">9</span></div><div class="line">    expect(<span class="number">4</span> * <span class="number">8</span>).to eq <span class="number">32</span></div><div class="line">    expect(<span class="number">40</span> / <span class="number">5</span>).to eq <span class="number">8</span></div><div class="line">  <span class="keyword">end</span></div><div class="line"><span class="keyword">end</span></div></pre></td></tr></table></figure></p>
+<p>但是，如果这么使用的话的，途中test失败的时候，那么之前的expect是通过了还是没有通过是不能够预想的（就是说，如果中间一个expect出错了，那么是前几个的错还是后几个的错事不知道的）。<br>所以，原则上<strong>[1个example上只有一个expect]</strong>，这样的写的测试具有很好的保守性。</p>
+<h3 id="describe的嵌套"><a href="#describe的嵌套" class="headerlink" title="describe的嵌套"></a>describe的嵌套</h3><p>多少个describe都是可以写的，嵌套是可以的。<br>基本的作用就是[把test分组化]，如下面的group可以这么写：<br><figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">describe <span class="string">'四則演算'</span> <span class="keyword">do</span></div><div class="line">  describe <span class="string">'加法'</span> <span class="keyword">do</span></div><div class="line">    it <span class="string">'1 + 1 は 2 になること'</span> <span class="keyword">do</span></div><div class="line">      expect(<span class="number">1</span> + <span class="number">1</span>).to eq <span class="number">2</span></div><div class="line">    <span class="keyword">end</span></div><div class="line">  <span class="keyword">end</span></div><div class="line">  describe <span class="string">'减法'</span> <span class="keyword">do</span></div><div class="line">    it <span class="string">'10 - 1 は 9 になること'</span> <span class="keyword">do</span></div><div class="line">      expect(<span class="number">10</span> - <span class="number">1</span>).to eq <span class="number">9</span></div><div class="line">    <span class="keyword">end</span></div><div class="line">  <span class="keyword">end</span></div><div class="line"><span class="keyword">end</span></div></pre></td></tr></table></figure></p>
+<p>这样的话，能够让读代码的人很好的理解。</p>
+<h3 id="context和before会更加的便利"><a href="#context和before会更加的便利" class="headerlink" title="context和before会更加的便利"></a>context和before会更加的便利</h3><p>使用更有实践的例子来说明，让我们来看看context和before的使用方法</p>
+<p>这是User类的声明，</p>
+<p>当12岁及以下，是中文。<br>当age是13岁及以上，是英文。<br><figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">User</span></span></div><div class="line">  <span class="function"><span class="keyword">def</span> <span class="title">initialize</span><span class="params">(<span class="symbol">name:</span>, <span class="symbol">age:</span>)</span></span></div><div class="line">    @name = name</div><div class="line">    @age = age</div><div class="line">  <span class="keyword">end</span></div><div class="line">  <span class="function"><span class="keyword">def</span> <span class="title">greet</span></span></div><div class="line">    <span class="keyword">if</span> @age &lt;= <span class="number">12</span></div><div class="line">      <span class="string">"我叫<span class="subst">#&#123;@name&#125;</span>。"</span></div><div class="line">    <span class="keyword">else</span></div><div class="line">      <span class="string">"My name is <span class="subst">#&#123;@name&#125;</span>。"</span></div><div class="line">    <span class="keyword">end</span></div><div class="line">  <span class="keyword">end</span></div><div class="line"><span class="keyword">end</span></div></pre></td></tr></table></figure></p>
+<p>那么对应的RSpec就是：<br><figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">describe User <span class="keyword">do</span></div><div class="line">  decribe <span class="string">'#greet'</span> <span class="keyword">do</span></div><div class="line">    it <span class="string">'12岁及以下'</span> <span class="keyword">do</span></div><div class="line">      user = User.new(<span class="symbol">name:</span> <span class="string">'杰克'</span>, <span class="symbol">age:</span><span class="number">12</span>)</div><div class="line">      expect(user.greet).to eq <span class="string">'我叫杰克'</span></div><div class="line">    <span class="keyword">end</span></div><div class="line">    it <span class="string">'13岁以上'</span> <span class="keyword">do</span></div><div class="line">      user = User.new(<span class="symbol">name:</span> <span class="string">'Jack'</span>, <span class="symbol">age:</span><span class="number">13</span>)</div><div class="line">      expect(user.greet).to eq <span class="string">'My name is Jack'</span></div><div class="line">    <span class="keyword">end</span></div><div class="line">  <span class="keyword">end</span></div><div class="line"><span class="keyword">end</span></div></pre></td></tr></table></figure></p>
+<p> 在这里的时候，要注意describe可以接class，也可以接文字列：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">describe User do</div><div class="line">describe &apos;#greet&apos; do</div></pre></td></tr></table></figure></p>
+<p> describe中，instance method的一般的写法是’#methodname’</p>
+<h3 id="context的条件组"><a href="#context的条件组" class="headerlink" title="context的条件组"></a>context的条件组</h3><p>```</p>
 
       
     </div>
@@ -438,6 +480,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/05/05/项目总结/" rel="prev" title="项目总结">
+                项目总结 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -517,7 +563,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">19</span>
+                <span class="site-state-item-count">20</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -594,7 +640,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#开始"><span class="nav-number">1.</span> <span class="nav-text">开始</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#开始"><span class="nav-number">1.</span> <span class="nav-text">开始</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#阅读适合的对象"><span class="nav-number">2.</span> <span class="nav-text">阅读适合的对象</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Ruby和Rails的版本"><span class="nav-number">3.</span> <span class="nav-text">Ruby和Rails的版本</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#关于RSpec的安装环境和方法"><span class="nav-number">4.</span> <span class="nav-text">关于RSpec的安装环境和方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第一步"><span class="nav-number">5.</span> <span class="nav-text">第一步</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#理解describe-it-expect的作用"><span class="nav-number">5.1.</span> <span class="nav-text">理解describe/it/expect的作用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#复数的example"><span class="nav-number">5.2.</span> <span class="nav-text">复数的example</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#复数的expecting"><span class="nav-number">5.3.</span> <span class="nav-text">复数的expecting</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#describe的嵌套"><span class="nav-number">5.4.</span> <span class="nav-text">describe的嵌套</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#context和before会更加的便利"><span class="nav-number">5.5.</span> <span class="nav-text">context和before会更加的便利</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#context的条件组"><span class="nav-number">5.6.</span> <span class="nav-text">context的条件组</span></a></li></ol></li></ol></div>
             
 
           </div>

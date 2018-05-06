@@ -267,6 +267,172 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/05/05/项目总结/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="haobangpig">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/WechatIMG1.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="棒呵呵">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/05/05/项目总结/" itemprop="url">项目总结</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-05T22:12:52+09:00">
+                2018-05-05
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/05/05/项目总结/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2018/05/05/项目总结/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2018/05/05/项目总结/" class="leancloud_visitors" data-flag-title="项目总结">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <blockquote>
+<p>这篇博客，因为刚好工作了快一个月，那么在工作中用到了哪些知识体系和框架，这里做一个小小的总结，，并且在接下来的工作中，能够认识到自己哪方面的不足，使得自己更加的注重这方面的技术积累。</p>
+<p>首先，我的这个项目是关于做介助士的参加考试，报名，评分，发证等等一系列的整体项目，那么在这个项目中，有着非常繁琐的仕様説明等等，但是呢，这里我要总结的是这个项目使用的技术和一些平常没有注意到点。</p>
+</blockquote>
+<h2 id="cares用到的技术框架"><a href="#cares用到的技术框架" class="headerlink" title="cares用到的技术框架"></a>cares用到的技术框架</h2><h3 id="归纳图"><a href="#归纳图" class="headerlink" title="归纳图"></a>归纳图</h3><h3 id="解释"><a href="#解释" class="headerlink" title="解释"></a>解释</h3><p>其实看一个rails的项目主要用了那些技术，其实在gemfile里面就介绍的很清楚了，那么拿到一个新的项目的时候，主要看gemfile里面的gem，对于一个项目有个大概的印象再去细究里面所有的技术，看一下我们这个项目整体用用到了那些gem：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div></pre></td><td class="code"><pre><div class="line">source &apos;https://rubygems.org&apos;</div><div class="line"></div><div class="line">gem &apos;rails&apos;, &apos;~&gt; 5.0.0&apos;</div><div class="line"></div><div class="line">gem &apos;mysql2&apos;</div><div class="line">gem &apos;paranoia&apos;</div><div class="line">gem &apos;devise&apos;</div><div class="line">gem &apos;active_hash&apos;</div><div class="line">gem &apos;bootstrap-sass&apos;</div><div class="line">gem &apos;jquery-rails&apos;</div><div class="line">gem &apos;kaminari&apos;</div><div class="line">gem &apos;bootstrap-datepicker-rails&apos;</div><div class="line">gem &apos;font-awesome-rails&apos;</div><div class="line">gem &apos;settingslogic&apos;</div><div class="line">gem &apos;draper&apos;</div><div class="line">gem &apos;carrierwave&apos;</div><div class="line">gem &apos;rubyzip&apos;</div><div class="line">gem &apos;ken_all&apos;</div><div class="line">gem &apos;dalli&apos;</div><div class="line">gem &apos;pdflib&apos;, &apos;9.1.0&apos;, path: &apos;vendor/gems/pdflib-9.1.0&apos;</div><div class="line">gem &apos;gon&apos;</div><div class="line">gem &apos;holiday_japan&apos;</div><div class="line">gem &apos;delayed_job&apos;</div><div class="line">gem &apos;delayed_job_active_record&apos;</div><div class="line">gem &apos;daemons&apos;</div><div class="line">gem &apos;curses&apos;</div><div class="line">gem &apos;migration_comments&apos;</div><div class="line">gem &apos;baby_squeel&apos;</div><div class="line"></div><div class="line"># Use unicorn as the app server</div><div class="line">gem &apos;unicorn&apos;</div><div class="line"></div><div class="line"># For scheduled jobs</div><div class="line">gem &apos;whenever&apos;, require: false</div><div class="line"></div><div class="line"># generate seed</div><div class="line">gem &apos;factory_girl_rails&apos;</div><div class="line"></div><div class="line"># use asset:precompile</div><div class="line">gem &apos;sass-rails&apos;</div><div class="line">gem &apos;coffee-rails&apos;</div><div class="line">gem &apos;uglifier&apos;</div><div class="line">gem &apos;therubyracer&apos;, platforms: :ruby</div><div class="line"></div><div class="line">group :production do</div><div class="line">  gem &apos;newrelic_rpm&apos;</div><div class="line">end</div><div class="line"></div><div class="line">group :development do</div><div class="line">  gem &apos;better_errors&apos;</div><div class="line">  gem &apos;binding_of_caller&apos;</div><div class="line">  gem &apos;rack-mini-profiler&apos;</div><div class="line">  gem &apos;annotate&apos;</div><div class="line">  gem &apos;letter_opener&apos;</div><div class="line">  gem &apos;colorize_unpermitted_parameters&apos;</div><div class="line"></div><div class="line">  gem &apos;capistrano&apos;, require: false</div><div class="line">  gem &apos;capistrano-unicorn&apos;, require: false</div><div class="line">  gem &apos;capistrano-rails&apos;, require: false</div><div class="line">  gem &apos;capistrano-rbenv&apos;, require: false</div><div class="line">  gem &apos;capistrano-bundler&apos;, require: false</div><div class="line">  gem &apos;capistrano-maintenance&apos;, require: false</div><div class="line">end</div><div class="line"></div><div class="line">group :development, :test do</div><div class="line">  gem &apos;spring&apos;</div><div class="line">  gem &apos;rspec&apos;</div><div class="line">  gem &apos;rspec-rails&apos;</div><div class="line">  gem &apos;rspec-collection_matchers&apos;</div><div class="line">  gem &apos;database_cleaner&apos;</div><div class="line">  gem &apos;guard-rspec&apos;</div><div class="line">  gem &apos;pry&apos;</div><div class="line">  gem &apos;pry-doc&apos;</div><div class="line">  gem &apos;pry-rails&apos;</div><div class="line">  gem &apos;pry-byebug&apos;</div><div class="line">  gem &apos;hirb&apos;</div><div class="line">  gem &apos;hirb-unicode&apos;</div><div class="line">  gem &apos;awesome_print&apos;</div><div class="line">  gem &apos;rubocop&apos;, require: false</div><div class="line">  gem &apos;guard-rubocop&apos;, require: false</div><div class="line">  gem &apos;parallel_tests&apos;</div><div class="line">  gem &apos;rails-controller-testing&apos;</div><div class="line">end</div><div class="line"></div><div class="line">group :test do</div><div class="line">  gem &apos;simplecov&apos;, require: false</div><div class="line">  gem &apos;simplecov-rcov&apos;, require: false</div><div class="line">  gem &apos;rspec_junit_formatter&apos;</div><div class="line">  gem &apos;rubocop-checkstyle_formatter&apos;, require: false</div><div class="line">end</div></pre></td></tr></table></figure></p>
+<p>那么，现在我们根据我们的示意图一点一点的看清楚每一个Gem使用了什么技术，并且是如何使用到我们的项目里面的。这里会一点一滴的去查，看以及做。</p>
+<p>那么解释这些gem之前，争取针对于每一个gem做到以下几点，并且能够通过自己的话表述出来</p>
+<ol>
+<li>这个gem是干什么的</li>
+<li>这个gem如何使用</li>
+</ol>
+<h3 id="常用概念的总结："><a href="#常用概念的总结：" class="headerlink" title="常用概念的总结："></a>常用概念的总结：</h3><ol>
+<li><p>Gem: 相当于是Ruby封装起来的应用程序或者代码库，我觉得可以理解成python中的各种package</p>
+</li>
+<li><p>Gemfile: 相当于这个应用程序中依赖了哪些第三方的包，会用bundle去根据配置的需求去寻找这些gem，这样来说有个非常方便的好处，就是在配置不同电脑的时候，使用相同版本的gem。就和vagrant中，使用相同的配置环境，进行开发一样。</p>
+</li>
+<li><p>Rake: rake命令就相当于linux 中的make 命令，把源码编译成可执行的程序。</p>
+</li>
+</ol>
+<p>在rails5之前，ruby on rails 大量使用了rake命令。最常用的两个命令：<br>rake db:migrate（迁移数据库，更新数据模型）和rake test（运行自动化测试组件）。</p>
+<p>使用rake时确保使用的是Gemfile文件中指定的版本。<br>rails5之前版本：bundle exec rake db:migrate</p>
+<ol>
+<li><p>Rakefile: Rake的执行命令的是由Rakefile来定义，相当于ruby版的makefile</p>
+</li>
+<li><p>Bundler: 是rails框架里面安装gemfile指定的各种库的工具</p>
+</li>
+<li><p>Rails API: 相当于开发一个接口，给web应用以外提供一个可以访问的接口。很多开发者使用rails构建后端，在Web应用中和其他原生应用之间共享。</p>
+</li>
+<li><p>RVM: RVM是装各种版本ruby的，就是ruby的版本管理器。Ruby环境不仅仅是Ruby本身，还包括依赖的第三方Ruby的Gem，都是由RVM进行管理的。</p>
+</li>
+<li><p>rbenv: 是rvm的另一种方法，都是管理ruby版本的。</p>
+</li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/04/30/RSpec入门（一）/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -364,12 +530,54 @@
 <h2 id="开始"><a href="#开始" class="headerlink" title="开始"></a>开始</h2><p>RSpec很难吧，是不是特么的什么都不懂，关于这样的评论是经常能看到的。确实，因为RSpec独特的结构，以及有很多功能，[看起来很难]这样的情绪是很能理解的。</p>
 <p>但是，不仅仅只是RSpec，不管什么样的框架也是一样的，习惯了之后，都能够很顺利的写的，实际上个人认为[RSpec是很方便的]。 （这是原作者这么认为的，我到现在也是经常一脸懵逼…）</p>
 <p>这里总结的是，原作者认为最低限度的需要了解的RSpec的文章结构，已经经常被使用的功能做一个总结。</p>
-<p>本文的文章结构和功能如下：    </p>
+<p>本文的文章结构和功能如下</p>
 <ul>
-<li>111</li>
-<li>333‘</li>
-<li>444</li>
+<li>describe / it / expect 的作用</li>
+<li>describe的嵌套</li>
+<li>context的使用方法</li>
+<li>let / let！/ subject的使用方法</li>
+<li>shared_examples的使用方法</li>
+<li>shared_context的使用方法</li>
+<li>pending 和 skip的使用区分</li>
 </ul>
+<p>关于其他的当然还有后续，如果有需要请参考原文，比如说mock，CapybaraのDSL等等。</p>
+<h2 id="阅读适合的对象"><a href="#阅读适合的对象" class="headerlink" title="阅读适合的对象"></a>阅读适合的对象</h2><ul>
+<li>RSpec读起来真的头痛的初心者</li>
+<li>已经使用过很多次了，但是RSpec还是不知道是啥的经验者</li>
+<li>有着Ruby关系的项目，需要写RSpec测试的人员，但是仍有困惑的从其他测试平台的经验者</li>
+</ul>
+<h2 id="Ruby和Rails的版本"><a href="#Ruby和Rails的版本" class="headerlink" title="Ruby和Rails的版本"></a>Ruby和Rails的版本</h2><ul>
+<li>RSpec 3.10</li>
+<li>Ruby 2.1.3</li>
+</ul>
+<p>这次的博文，没有用rails，纯Ruby的代码。</p>
+<h2 id="关于RSpec的安装环境和方法"><a href="#关于RSpec的安装环境和方法" class="headerlink" title="关于RSpec的安装环境和方法"></a>关于RSpec的安装环境和方法</h2><p>这里原文当然也有粘贴方法，但是我这里就不详细讲了，需要的可以查询下其他资料。</p>
+<h2 id="第一步"><a href="#第一步" class="headerlink" title="第一步"></a>第一步</h2><h3 id="理解describe-it-expect的作用"><a href="#理解describe-it-expect的作用" class="headerlink" title="理解describe/it/expect的作用"></a>理解describe/it/expect的作用</h3><p>最简单的RSpec是这样的记述的：</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">describe <span class="string">'四则运算'</span> <span class="keyword">do</span></div><div class="line">	it <span class="string">'1+1 是 2 的时候'</span> <span class="keyword">do</span></div><div class="line">		expect(<span class="number">1</span>+<span class="number">1</span>).to eq <span class="number">2</span></div><div class="line">	<span class="keyword">end</span></div><div class="line"><span class="keyword">end</span></div></pre></td></tr></table></figure>
+<p>describe是test的分组的宣言，在这里‘是有关于四则运算的test’的声明。</p>
+<p>it 是test中是以example为单位的作用。it do …end中，expecting（和预期一致的值比较）如果全部pass的话，那么这个example就是pass（通过了）。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">expect（X）.to eq Y</div></pre></td></tr></table></figure>
+<p>这样的记述，就是一个expecting，并且<br>expect（1+1）.to eq 2这样的意义是[1+1的结果期待是2]的测试。</p>
+<blockquote>
+<p>把should变成expect的理由</p>
+</blockquote>
+<p>在RSpec的2.10以前，should是下面的方法的：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">(1+2).should eq 3</div><div class="line">#或者是</div><div class="line">(1+2).should == 3</div></pre></td></tr></table></figure>
+<p>然后，现在不使用should，而是使用expect的理由是，should是黑魔法，如果使用的话会有发生问题的可能，如果有想看详细的理由的，请看：<br>参考地址：<a href="http://rspec.info/blog/2012/06/rspecs-new-expectation-syntax/" target="_blank" rel="external">不用should的原因</a></p>
+<h3 id="复数的example"><a href="#复数的example" class="headerlink" title="复数的example"></a>复数的example</h3><p>在describe中，可以写复数的example（it do …end）：<br><figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">descibe <span class="string">'四则运算'</span> <span class="keyword">do</span></div><div class="line">  it <span class="string">'1+1要等于2'</span> <span class="keyword">do</span></div><div class="line">    expect(<span class="number">1</span> + <span class="number">1</span>).to eq <span class="number">2</span></div><div class="line">  <span class="keyword">end</span></div><div class="line">  it <span class="string">'10-1要等于9'</span> <span class="keyword">do</span></div><div class="line">    expect(<span class="number">10</span> - <span class="number">1</span>).to eq <span class="number">9</span></div><div class="line">  <span class="keyword">end</span></div><div class="line"><span class="keyword">end</span></div></pre></td></tr></table></figure></p>
+<p>那么如果实现测试的话，会有一下的结果</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">2 examples, 0 failures, 2 passed</div><div class="line"></div><div class="line">Finished in 0.002592 seconds</div><div class="line"></div><div class="line">Process finished with exit code 0</div></pre></td></tr></table></figure>
+<h3 id="复数的expecting"><a href="#复数的expecting" class="headerlink" title="复数的expecting"></a>复数的expecting</h3><p>在一个example中，可以有很多的expecting：<br><figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">describe <span class="string">'四則演算'</span> <span class="keyword">do</span></div><div class="line">  it <span class="string">'全部都可以通过'</span> <span class="keyword">do</span></div><div class="line">    expect(<span class="number">1</span> + <span class="number">2</span>).to eq <span class="number">3</span></div><div class="line">    expect(<span class="number">10</span> - <span class="number">1</span>).to eq <span class="number">9</span></div><div class="line">    expect(<span class="number">4</span> * <span class="number">8</span>).to eq <span class="number">32</span></div><div class="line">    expect(<span class="number">40</span> / <span class="number">5</span>).to eq <span class="number">8</span></div><div class="line">  <span class="keyword">end</span></div><div class="line"><span class="keyword">end</span></div></pre></td></tr></table></figure></p>
+<p>但是，如果这么使用的话的，途中test失败的时候，那么之前的expect是通过了还是没有通过是不能够预想的（就是说，如果中间一个expect出错了，那么是前几个的错还是后几个的错事不知道的）。<br>所以，原则上<strong>[1个example上只有一个expect]</strong>，这样的写的测试具有很好的保守性。</p>
+<h3 id="describe的嵌套"><a href="#describe的嵌套" class="headerlink" title="describe的嵌套"></a>describe的嵌套</h3><p>多少个describe都是可以写的，嵌套是可以的。<br>基本的作用就是[把test分组化]，如下面的group可以这么写：<br><figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">describe <span class="string">'四則演算'</span> <span class="keyword">do</span></div><div class="line">  describe <span class="string">'加法'</span> <span class="keyword">do</span></div><div class="line">    it <span class="string">'1 + 1 は 2 になること'</span> <span class="keyword">do</span></div><div class="line">      expect(<span class="number">1</span> + <span class="number">1</span>).to eq <span class="number">2</span></div><div class="line">    <span class="keyword">end</span></div><div class="line">  <span class="keyword">end</span></div><div class="line">  describe <span class="string">'减法'</span> <span class="keyword">do</span></div><div class="line">    it <span class="string">'10 - 1 は 9 になること'</span> <span class="keyword">do</span></div><div class="line">      expect(<span class="number">10</span> - <span class="number">1</span>).to eq <span class="number">9</span></div><div class="line">    <span class="keyword">end</span></div><div class="line">  <span class="keyword">end</span></div><div class="line"><span class="keyword">end</span></div></pre></td></tr></table></figure></p>
+<p>这样的话，能够让读代码的人很好的理解。</p>
+<h3 id="context和before会更加的便利"><a href="#context和before会更加的便利" class="headerlink" title="context和before会更加的便利"></a>context和before会更加的便利</h3><p>使用更有实践的例子来说明，让我们来看看context和before的使用方法</p>
+<p>这是User类的声明，</p>
+<p>当12岁及以下，是中文。<br>当age是13岁及以上，是英文。<br><figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">User</span></span></div><div class="line">  <span class="function"><span class="keyword">def</span> <span class="title">initialize</span><span class="params">(<span class="symbol">name:</span>, <span class="symbol">age:</span>)</span></span></div><div class="line">    @name = name</div><div class="line">    @age = age</div><div class="line">  <span class="keyword">end</span></div><div class="line">  <span class="function"><span class="keyword">def</span> <span class="title">greet</span></span></div><div class="line">    <span class="keyword">if</span> @age &lt;= <span class="number">12</span></div><div class="line">      <span class="string">"我叫<span class="subst">#&#123;@name&#125;</span>。"</span></div><div class="line">    <span class="keyword">else</span></div><div class="line">      <span class="string">"My name is <span class="subst">#&#123;@name&#125;</span>。"</span></div><div class="line">    <span class="keyword">end</span></div><div class="line">  <span class="keyword">end</span></div><div class="line"><span class="keyword">end</span></div></pre></td></tr></table></figure></p>
+<p>那么对应的RSpec就是：<br><figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">describe User <span class="keyword">do</span></div><div class="line">  decribe <span class="string">'#greet'</span> <span class="keyword">do</span></div><div class="line">    it <span class="string">'12岁及以下'</span> <span class="keyword">do</span></div><div class="line">      user = User.new(<span class="symbol">name:</span> <span class="string">'杰克'</span>, <span class="symbol">age:</span><span class="number">12</span>)</div><div class="line">      expect(user.greet).to eq <span class="string">'我叫杰克'</span></div><div class="line">    <span class="keyword">end</span></div><div class="line">    it <span class="string">'13岁以上'</span> <span class="keyword">do</span></div><div class="line">      user = User.new(<span class="symbol">name:</span> <span class="string">'Jack'</span>, <span class="symbol">age:</span><span class="number">13</span>)</div><div class="line">      expect(user.greet).to eq <span class="string">'My name is Jack'</span></div><div class="line">    <span class="keyword">end</span></div><div class="line">  <span class="keyword">end</span></div><div class="line"><span class="keyword">end</span></div></pre></td></tr></table></figure></p>
+<p> 在这里的时候，要注意describe可以接class，也可以接文字列：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">describe User do</div><div class="line">describe &apos;#greet&apos; do</div></pre></td></tr></table></figure></p>
+<p> describe中，instance method的一般的写法是’#methodname’</p>
+<h3 id="context的条件组"><a href="#context的条件组" class="headerlink" title="context的条件组"></a>context的条件组</h3><p>```</p>
 
           
         
@@ -1615,139 +1823,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/08/01/tensorflow的学习心得（三）CNN代码详解/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="haobangpig">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/WechatIMG1.jpeg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="棒呵呵">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/08/01/tensorflow的学习心得（三）CNN代码详解/" itemprop="url">tensorflow的学习心得（三）CNN代码详解</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-01T12:56:16+09:00">
-                2017-08-01
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017/08/01/tensorflow的学习心得（三）CNN代码详解/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2017/08/01/tensorflow的学习心得（三）CNN代码详解/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2017/08/01/tensorflow的学习心得（三）CNN代码详解/" class="leancloud_visitors" data-flag-title="tensorflow的学习心得（三）CNN代码详解">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1798,7 +1873,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">19</span>
+                <span class="site-state-item-count">20</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
